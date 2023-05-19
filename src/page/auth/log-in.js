@@ -34,13 +34,9 @@ const LogIn = () => {
   return (
     <div className="animate-in flex justify-between">
       <div className="w-1/2 h-screen flex flex-col justify-between">
-        <div className="mx-16">
-          <img
-            className="w-[100px] h-[100px] mt-[90px]"
-            src={mainLogo}
-            alt="mainLogo"
-          />
-          <h1 className="text-4xl font-bold mt-[65px]">Login</h1>
+        <div className="mx-16 my-auto">
+          <img className="w-[100px] h-[100px] " src={mainLogo} alt="mainLogo" />
+          <h1 className="text-4xl font-bold pt-[100px]">Login</h1>
           <p className="text-gray/50 mt-8">
             Welcome! Please Login or Create a New Account
           </p>
