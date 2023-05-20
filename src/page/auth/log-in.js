@@ -72,7 +72,7 @@ const LogIn = () => {
                     <Button
                       loading={isLoading}
                       onClick={() => {
-                        history.push(routes.app.default);
+                        history.push(routes.app.reportes.default);
                       }}
                       className="bg-primary w-full h-[55px] rounded-[10px] text-white font-normal text-base rtl:font-serifAR ltr:font-serifEN"
                     >

@@ -5,6 +5,21 @@ const routes = {
   },
   app: {
     default: `/dashboard`,
+    reportes: {
+      default: `/dashboard/reportes`,
+    },
+    users: {
+      default: `/dashboard/users`,
+    },
+    groups: {
+      default: `/dashboard/groups`,
+    },
+    sync: {
+      default: `/dashboard/sync`,
+    },
+    admins: {
+      default: `/dashboard/admins`,
+    },
   },
 };
 
