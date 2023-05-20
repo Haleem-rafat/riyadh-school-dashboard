@@ -10,7 +10,10 @@
   *:lang(ar) {
     font-family: "Cairo", sans-serif;
   }
-  
+  /* html{
+    @apply bg-background
+  }
+   */
   /* input number */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
