@@ -4,6 +4,7 @@ import SideBare from "../components/common/side-bare/side-bare";
 import NavBare from "../components/common/nave-bare/nav-bare";
 import routes from "../routes";
 import Reports from "../page/app/reportes/reports";
+import Users from "../page/app/users/users";
 
 const AppLayouts = () => {
   return (
@@ -16,6 +17,7 @@ const AppLayouts = () => {
       <div className="ml-[170px] ">
         <Switch>
           <Route path={routes.app.reportes.default} component={Reports} />
+          <Route path={routes.app.users.default} component={Users} />
         </Switch>
       </div>
       {/* <div className="bg-white w-full fixed bottom-0 h-20"></div> */}
