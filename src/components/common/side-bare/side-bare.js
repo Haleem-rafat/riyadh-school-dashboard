@@ -95,7 +95,7 @@ export const NavLink = ({ isActive, onClick, icon, title }) => {
         isActive
           ? "bg-primary-veryLight border-l-4 border-primary "
           : "bg-white border-l-4 border-white "
-      } w-[120px] h-[70px] ml-auto cursor-pointer my-4 `}
+      } w-[120px] h-[70px] ml-auto cursor-pointer my-8`}
     >
       <div className="text-center pt-4">
         {icon}

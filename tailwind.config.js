@@ -36,6 +36,12 @@ module.exports = {
           DEFAULT: "#646D82",
           veryLight: "#E9E9F0",
         },
+        green: {
+          DEFAULT: "#348074",
+        },
+        red: {
+          DEFAULT: "#FF5865",
+        },
       },
     },
   },

@@ -25,6 +25,9 @@
 .ui.checkbox input.hidden+label{
   @apply text-gray 
 }
+.edit_search_input.ui.icon.input>input{
+@apply bg-[#F6F8FC] rounded-[30px] w-[900px] h-[45px] outline-none  
+}
 /* ///////////////////animate//////////////////////////// */
 .animate-in {
   animation: fade-in 350ms ease-in-out forwards;
