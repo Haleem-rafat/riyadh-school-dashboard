@@ -13,12 +13,14 @@ const routes = {
     },
     groups: {
       default: `/dashboard/groups`,
+      timeSlote: `/dashboard/groups/time-slote`,
     },
     sync: {
       default: `/dashboard/sync`,
     },
     admins: {
       default: `/dashboard/admins`,
+      managers: `/dashboard/admins/managers`,
     },
   },
 };

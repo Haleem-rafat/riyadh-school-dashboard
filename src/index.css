@@ -62,3 +62,15 @@
   }
 }
 /* //////////////////////////////////////////////////// */
+/* //////////////////////////edit-For-groups-tabs////////////////////////// */
+.edit-For-groups-tabs .ui.secondary.menu {
+  @apply bg-background-sub
+}
+.edit-For-groups-tabs .ui.secondary.menu .item {
+  @apply  text-xl px-8 mx-8 rounded-lg
+}
+.edit-For-groups-tabs .ui.secondary.menu .active.item {
+  @apply bg-primary text-white text-xl px-8 rounded-lg
+}
+/* /////////////////////////////////////////////////////////////////////// */
+

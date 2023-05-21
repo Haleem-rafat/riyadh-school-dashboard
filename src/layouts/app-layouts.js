@@ -5,6 +5,8 @@ import NavBare from "../components/common/nave-bare/nav-bare";
 import routes from "../routes";
 import Reports from "../page/app/reportes/reports";
 import Users from "../page/app/users/users";
+import GroupsTabs from "../page/app/groups/groups-tabs";
+import AdminsTabs from "../page/app/admins/admins-tabs";
 
 const AppLayouts = () => {
   return (
@@ -18,6 +20,8 @@ const AppLayouts = () => {
         <Switch>
           <Route path={routes.app.reportes.default} component={Reports} />
           <Route path={routes.app.users.default} component={Users} />
+          <Route path={routes.app.groups.default} component={GroupsTabs} />
+          <Route path={routes.app.admins.default} component={AdminsTabs} />
         </Switch>
       </div>
       {/* <div className="bg-white w-full fixed bottom-0 h-20"></div> */}
