@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import Avatar from "../common/Avatar/Avater";
+import PaginationApp from "../common/pagination/pagination-app";
 
 const TimeSloteTable = () => {
   return (
@@ -99,6 +99,9 @@ const TimeSloteTable = () => {
           </Table.Row>
         </Table.Body>
       </Table>
+      <div className="flex justify-end">
+        <PaginationApp />
+      </div>
     </div>
   );
 };

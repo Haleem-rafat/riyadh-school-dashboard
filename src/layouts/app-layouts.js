@@ -7,6 +7,7 @@ import Reports from "../page/app/reportes/reports";
 import Users from "../page/app/users/users";
 import GroupsTabs from "../page/app/groups/groups-tabs";
 import AdminsTabs from "../page/app/admins/admins-tabs";
+import ViewDetails from "../components/common/shared-pages/view-details";
 
 const AppLayouts = () => {
   return (
@@ -16,9 +17,14 @@ const AppLayouts = () => {
         <SideBare />
         {/* <div className="bg-white w-20 h-screen fixed z-10 right-0"></div> */}
       </div>
-      <div className="ml-[170px] ">
+      <div className="ml-[170px]">
         <Switch>
+          <Route
+            path={routes.app.reportes.reportesView()}
+            component={ViewDetails}
+          />
           <Route path={routes.app.reportes.default} component={Reports} />
+          <Route path={routes.app.users.usersView()} component={ViewDetails} />
           <Route path={routes.app.users.default} component={Users} />
           <Route path={routes.app.groups.default} component={GroupsTabs} />
           <Route path={routes.app.admins.default} component={AdminsTabs} />

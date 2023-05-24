@@ -63,14 +63,28 @@
 }
 /* //////////////////////////////////////////////////// */
 /* //////////////////////////edit-For-groups-tabs////////////////////////// */
-.edit-For-groups-tabs .ui.secondary.menu {
+.edit-For-groups-tabs.ui.secondary.menu {
   @apply bg-background-sub
 }
-.edit-For-groups-tabs .ui.secondary.menu .item {
+.edit-For-groups-tabs.ui.secondary.menu .item {
   @apply  text-xl px-8 mx-8 rounded-lg
 }
-.edit-For-groups-tabs .ui.secondary.menu .active.item {
+.edit-For-groups-tabs.ui.secondary.menu .active.item {
   @apply bg-primary text-white text-xl px-8 rounded-lg
 }
 /* /////////////////////////////////////////////////////////////////////// */
-
+/* //////////////////////////////Edit_Pagination_App///////////////////// */
+.Edit_Pagination_App.ui.pagination.menu .item{
+  @apply bg-white outline-2 outline outline-primary flex justify-center p-0 min-w-[25px] min-h-[25px] rounded-l !important
+}
+.Edit_Pagination_App.ui.secondary.menu .active.item{
+  @apply bg-primary text-white !important
+}
+.Edit_Pagination_App.ui.menu>.item:first-child{
+  @apply text-green font-bold text-xl
+  
+}
+.Edit_Pagination_App.ui.menu>.item:last-child{
+  @apply text-green font-bold text-xl
+}
+/* /////////////////////////////////////////////////////////////////////// */

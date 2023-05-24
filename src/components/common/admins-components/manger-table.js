@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
 import Avatar from "../Avatar/Avater";
+import PaginationApp from "../pagination/pagination-app";
 
 const MangerTable = () => {
   return (
@@ -241,6 +242,9 @@ const MangerTable = () => {
           </Table.Row>
         </Table.Body>
       </Table>
+      <div className="flex justify-end">
+        <PaginationApp />
+      </div>
     </div>
   );
 };

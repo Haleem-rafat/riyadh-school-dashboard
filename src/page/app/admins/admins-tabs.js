@@ -52,11 +52,11 @@ const AdminsTabs = () => {
           )}
         </div>
       </div>
-      <div className="mx-auto pt-3 h-auto edit-For-groups-tabs animate-in bg-background-sub rounded-lg shadow ">
+      <div className="mx-auto pt-3 h-auto animate-in bg-background-sub rounded-lg shadow ">
         <Tab
           menu={{
             secondary: true,
-            className: "flex flex-wrap mx-5",
+            className: "flex flex-wrap mx-5 edit-For-groups-tabs",
           }}
           activeIndex={activeIndex}
           onTabChange={onTabChange}

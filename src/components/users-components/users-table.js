@@ -1,8 +1,12 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
 import Avatar from "../common/Avatar/Avater";
+import routes from "../../routes";
+import { useHistory } from "react-router-dom";
+import PaginationApp from "../common/pagination/pagination-app";
 
 const UsersTable = () => {
+  const history = useHistory();
   return (
     <div className="p-5">
       <Table basic="very">
@@ -42,7 +46,10 @@ const UsersTable = () => {
             <Table.Cell className="text-green">Active</Table.Cell>
             <Table.Cell>
               <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
+                <button
+                  onClick={() => history.push(routes.app.users.usersView())}
+                  className="text-green border-[1px] border-green rounded-full py-1 px-4"
+                >
                   View
                 </button>
                 <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
@@ -229,6 +236,9 @@ const UsersTable = () => {
           </Table.Row>
         </Table.Body>
       </Table>
+      <div className="flex justify-end">
+        <PaginationApp />
+      </div>
     </div>
   );
 };

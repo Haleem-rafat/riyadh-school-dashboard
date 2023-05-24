@@ -38,7 +38,7 @@ const GroupsTabs = () => {
   const { activeIndex, onTabChange } = useTab({ panes });
 
   return (
-    <div className="bg-background h-screen pt-[140px] px-10 ">
+    <div className="bg-background h-screen pt-[140px] px-10  ">
       <div className="flex justify-between mb-10 mx-2">
         <p className="text-4xl">
           {pathname.startsWith(routes.app.groups.timeSlote)
@@ -53,11 +53,11 @@ const GroupsTabs = () => {
           )}
         </div>
       </div>
-      <div className="mx-auto pt-3 h-auto edit-For-groups-tabs animate-in bg-background-sub rounded-lg shadow ">
+      <div className="mx-auto pt-3 h-auto  animate-in bg-background-sub rounded-lg shadow  ">
         <Tab
           menu={{
             secondary: true,
-            className: "flex flex-wrap mx-5",
+            className: "flex flex-wrap mx-5  edit-For-groups-tabs",
           }}
           activeIndex={activeIndex}
           onTabChange={onTabChange}

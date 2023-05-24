@@ -7,9 +7,11 @@ const routes = {
     default: `/dashboard`,
     reportes: {
       default: `/dashboard/reportes`,
+      reportesView: (id = ":id") => `/dashboard/reportes/view/${id}`,
     },
     users: {
       default: `/dashboard/users`,
+      usersView: (id = ":id") => `/dashboard/users/view${id}`,
     },
     groups: {
       default: `/dashboard/groups`,
