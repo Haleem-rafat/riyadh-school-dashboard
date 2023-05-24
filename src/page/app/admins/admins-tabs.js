@@ -37,8 +37,8 @@ const AdminsTabs = () => {
   const { activeIndex, onTabChange } = useTab({ panes });
 
   return (
-    <div className="bg-background h-screen pt-[140px] px-10 ">
-      <div className="flex justify-between mb-10 mx-2">
+    <div className="bg-background h-screen pt-8 px-10 ">
+      <div className="flex md:flex-nowrap flex-wrap  md:gap-y-0 gap-y-5 justify-between mb-10 mx-2">
         <p className="text-4xl">
           {pathname.startsWith(routes.app.admins.managers)
             ? "Managers"

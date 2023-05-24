@@ -10,10 +10,10 @@
   *:lang(ar) {
     font-family: "Cairo", sans-serif;
   }
-  /* html{
+  html{
     @apply bg-background
   }
-   */
+  
   /* input number */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -29,7 +29,7 @@
   @apply text-gray 
 }
 .edit_search_input.ui.icon.input>input{
-@apply bg-[#F6F8FC] rounded-[30px] w-[900px] h-[45px] outline-none  
+@apply bg-[#F6F8FC] rounded-[30px] md:w-[900px] w-full h-[45px] outline-none  
 }
 /* ///////////////////animate//////////////////////////// */
 .animate-in {

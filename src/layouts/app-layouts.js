@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import SideBare from "../components/common/side-bare/side-bare";
 import NavBare from "../components/common/nave-bare/nav-bare";
@@ -9,16 +9,26 @@ import GroupsTabs from "../page/app/groups/groups-tabs";
 import AdminsTabs from "../page/app/admins/admins-tabs";
 import ViewDetails from "../components/common/shared-pages/view-details";
 import Notification from "../page/app/notification/notification";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 const AppLayouts = () => {
+  const [sid, SetSid] = useState(false);
   return (
-    <div className="animate-in w-full mx-auto">
+    <div className=" w-full mx-auto">
       <div className="flex">
+        <SideBare SetSid={SetSid} sid={sid} />
         <NavBare />
-        <SideBare />
         {/* <div className="bg-white w-20 h-screen fixed z-10 right-0"></div> */}
       </div>
-      <div className="ml-[170px]">
+      <div className="md:ml-[170px] ml-0 bg-background z-0">
+        <div className="pt-5">
+          <button
+            className="border-[1px] border-gray-dark text-gray-dark rounded-full md:hidden block mx-4 mb-4 "
+            onClick={() => SetSid(true)}
+          >
+            <BiMenuAltLeft size={25} className="m-1" />
+          </button>
+        </div>
         <Switch>
           <Route
             path={routes.app.reportes.reportesView()}

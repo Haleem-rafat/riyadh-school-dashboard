@@ -5,9 +5,9 @@ import QrCodeModel from "./qr-code-model";
 
 const ViewDetails = () => {
   return (
-    <div className="bg-background h-screen pt-[140px] ">
+    <div className="bg-background h-screen pt-8 z-0 ">
       <div className="bg-white mx-10 rounded-lg animate-in ">
-        <div className="h-[130px] border-l-[30px] rounded-l-lg border-primary py-10 flex justify-between px-24">
+        <div className="md:h-[130px] h-auto border-l-[30px] rounded-l-lg border-primary py-10 flex md:flex-row flex-col justify-between mdpx-24 px-5 md:gap-y-0 gap-y-5 ">
           <div className="flex gap-5 ">
             <Avatar name="Mai Ahmed" className="w-16 h-16 text-xl " />
             <div>
@@ -40,7 +40,7 @@ const ViewDetails = () => {
       </div>
 
       <div className="bg-white mx-10 rounded-lg animate-in mt-8 ">
-        <div className="bg-[#FBFBFE] h-[60px] rounded-t-lg flex justify-between ">
+        <div className="bg-[#FBFBFE] md:h-[60px] h-auto rounded-t-lg flex md:flex-nowrap flex-wrap  justify-between px-5 ">
           <p className="pt-[15px] pl-[15px] text-2xl">Attendance list</p>
           <div>
             <QrCodeModel />

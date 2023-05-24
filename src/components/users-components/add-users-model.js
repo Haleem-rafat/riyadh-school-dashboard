@@ -11,12 +11,12 @@ function AddUsersModel() {
 
   return (
     <Modal
-      className="w-[600px] h-auto rounded-lg bg-background-sub scale-in"
+      className="md:w-[600px] w-full h-auto rounded-lg bg-background-sub scale-in"
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-        <Button className="bg-green text-white w-[200px] rounded-full font-serifEN font-normal text-base">
+        <Button className="bg-green text-white md:w-[200px] w-full rounded-full font-serifEN font-normal text-base">
           <div className="flex justify-center gap-x-4">
             <AddCircleIcon />
             <p className="text-xl">Add User</p>
@@ -24,8 +24,8 @@ function AddUsersModel() {
         </Button>
       }
     >
-      <Modal.Content className="w-[600px] h-auto bg-background-sub rounded-lg">
-        <div className="bg-white w-[550px] h-auto rounded-lg mx-auto my-0 ">
+      <Modal.Content className="md:w-[600px] w-full h-auto bg-background-sub rounded-lg">
+        <div className="bg-white md:w-[550px] w-full h-auto rounded-lg mx-auto my-0 ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">
             <p className="text-xl pt-3">Add User</p>
             <CloseIcon

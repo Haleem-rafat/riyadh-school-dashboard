@@ -10,7 +10,7 @@ import PaginationApp from "../common/pagination/pagination-app";
 const ReportesTable = () => {
   const history = useHistory();
   return (
-    <div className="p-5">
+    <div className="p-5 z-0">
       <Table basic="very">
         <Table.Header>
           <Table.Row>

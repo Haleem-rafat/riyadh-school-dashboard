@@ -10,7 +10,7 @@ function MangerModel() {
 
   return (
     <Modal
-      className="w-[600px] h-auto rounded-lg bg-background-sub scale-in"
+      className="md:w-[600px] w-full h-auto rounded-lg bg-background-sub scale-in"
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
@@ -23,8 +23,8 @@ function MangerModel() {
         </Button>
       }
     >
-      <Modal.Content className="w-[600px] h-auto bg-background-sub rounded-lg">
-        <div className="bg-white w-[550px] h-auto rounded-lg mx-auto my-0 ">
+      <Modal.Content className="md:w-[600px] w-full h-auto bg-background-sub rounded-lg">
+        <div className="bg-white md:w-[550px] w-full h-auto rounded-lg mx-auto my-0 ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">
             <p className="text-xl pt-3">Select Time Slot</p>
             <CloseIcon

@@ -8,8 +8,8 @@ import { useHistory } from "react-router-dom";
 const NavBare = () => {
   const history = useHistory();
   return (
-    <div className="w-full fixed bg-white">
-      <div className="ml-[170px] flex justify-between h-[110px]">
+    <div className="w-full bg-white">
+      <div className="md:ml-[170px] ml-5 mx-auto flex justify-between gap-x-10 h-[110px]">
         <div className="mt-auto mb-8">
           <Input
             icon="search"
@@ -18,7 +18,7 @@ const NavBare = () => {
             className="w-full rounded-xl edit_search_input"
           />
         </div>
-        <div className="flex justify-between gap-x-10 mt-auto mb-8 mr-20">
+        <div className="flex justify-between gap-x-10 mt-auto mb-8 md:mr-20 mr-5">
           <NotifigationsIcon
             className="mt-1.5 cursor-pointer"
             onClick={() => history.push(routes.app.notification.default)}

@@ -4,8 +4,8 @@ import AddUsersModel from "../../../components/users-components/add-users-model"
 
 const Users = () => {
   return (
-    <div className="bg-background h-screen pt-[140px] ">
-      <div className="flex gap-x-10 mx-10 ">
+    <div className="bg-background h-screen pt-8 ">
+      <div className="flex md:flex-nowrap flex-wrap  gap-x-10 gap-y-5 md:gap-y-0 mx-10 ">
         <div className="bg-[#FBFBFE] w-full h-[60px] rounded-t-lg  animate-in ">
           <p className="pt-[15px] pl-[15px] text-2xl">Users</p>
         </div>

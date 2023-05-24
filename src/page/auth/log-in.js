@@ -33,7 +33,7 @@ const LogIn = () => {
 
   return (
     <div className="animate-in flex justify-between">
-      <div className="w-1/2 h-screen flex flex-col justify-between">
+      <div className="md:w-1/2 w-full h-screen flex flex-col justify-between">
         <div className="mx-16 my-auto">
           <img className="w-[100px] h-[100px] " src={mainLogo} alt="mainLogo" />
           <h1 className="text-4xl font-bold pt-[100px]">Login</h1>
@@ -89,7 +89,7 @@ const LogIn = () => {
         </p>
       </div>
 
-      <div className="h-screen bg-primary w-full flex ">
+      <div className="h-screen bg-primary w-full md:flex hidden  ">
         <img
           className="w-[600px] h-[600px] object-cover mx-auto my-auto "
           src={rightAuthLogo}
