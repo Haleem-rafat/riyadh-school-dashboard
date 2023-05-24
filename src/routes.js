@@ -24,6 +24,9 @@ const routes = {
       default: `/dashboard/admins`,
       managers: `/dashboard/admins/managers`,
     },
+    notification: {
+      default: `/dashboard/notification`,
+    },
   },
 };
 

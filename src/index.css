@@ -88,3 +88,6 @@
   @apply text-green font-bold text-xl
 }
 /* /////////////////////////////////////////////////////////////////////// */
+.Edit_FormikMultiDropdown.ui.fluid.dropdown {
+  @apply rounded-xl h-[50px] 
+}

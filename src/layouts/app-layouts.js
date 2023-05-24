@@ -8,6 +8,7 @@ import Users from "../page/app/users/users";
 import GroupsTabs from "../page/app/groups/groups-tabs";
 import AdminsTabs from "../page/app/admins/admins-tabs";
 import ViewDetails from "../components/common/shared-pages/view-details";
+import Notification from "../page/app/notification/notification";
 
 const AppLayouts = () => {
   return (
@@ -28,6 +29,10 @@ const AppLayouts = () => {
           <Route path={routes.app.users.default} component={Users} />
           <Route path={routes.app.groups.default} component={GroupsTabs} />
           <Route path={routes.app.admins.default} component={AdminsTabs} />
+          <Route
+            path={routes.app.notification.default}
+            component={Notification}
+          />
         </Switch>
       </div>
       {/* <div className="bg-white w-full fixed bottom-0 h-20"></div> */}

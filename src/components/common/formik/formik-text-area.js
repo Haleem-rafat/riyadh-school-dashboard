@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import { FormTextArea } from "semantic-ui-react";
 import ErrorMessage from "./error-message";
-import "../../../../src/assets/style/formik-text-area.css";
+// import "../../../../src/assets/style/formik-text-area.css";
 
 function FormikTextArea({
   label,
