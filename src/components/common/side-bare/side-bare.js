@@ -44,8 +44,8 @@ const SideBare = ({ SetSid, sid }) => {
   };
 
   return (
-    <div className="w-full fixed top-0 z-50">
-      <div className="bg-white w-[170px] h-screen fixed md:block hidden  z-40">
+    <div className="w-full fixed top-0 z-50 ">
+      <div className="bg-white w-[170px] h-screen fixed md:block hidden  z-40 overflow-scroll scrollbar-hide">
         <img
           className="w-[90px] h-[90px] ml-auto mr-8 mb-[60px] mt-[40px]"
           src={mainLogo}
