@@ -15,15 +15,31 @@ import useAxios from "../../hooks/use-axios";
 import rightAuthLogo from "../../../src/assets/img/right-auth-logo.png";
 import mainLogo from "../../../src/assets/img/main-logo.png";
 
+import auth from "../../utils/auth";
+import api from "../../api";
+import { axios } from "../../config/axios-config";
+
 const LogIn = () => {
   const history = useHistory();
 
-  const { run, isLoading } = useAxios();
+  const { run, isLoading, error } = useAxios();
 
-  const logIn = (values) => {
-    console.log("====================================");
-    console.log(values);
-    console.log("====================================");
+  const Login = (values) => {
+    run(axios.post(api.auth.logIN, values))
+      .then((res) => {
+        console.log("====================================");
+        console.log(res);
+        console.log("====================================");
+        const { accessToken, refreshToken } = res.data.data;
+        auth.setToken({
+          newAccessToken: accessToken,
+          newRefreshToken: refreshToken,
+        });
+        history.push(routes.app.reportes.default);
+      })
+      .catch((err) => {
+        toast.error(error?.massage || "something is wrong please try again");
+      });
   };
 
   const logInSchema = Yup.object({
@@ -45,7 +61,7 @@ const LogIn = () => {
               email: "",
               password: "",
             }}
-            onSubmit={logIn}
+            onSubmit={Login}
             validationSchema={logInSchema}
           >
             {(formik) => (
@@ -71,9 +87,6 @@ const LogIn = () => {
                   <div className="md:flex block justify-center ">
                     <Button
                       loading={isLoading}
-                      onClick={() => {
-                        history.push(routes.app.reportes.default);
-                      }}
                       className="bg-primary w-full h-[55px] rounded-[10px] text-white font-normal text-base rtl:font-serifAR ltr:font-serifEN"
                     >
                       Log in

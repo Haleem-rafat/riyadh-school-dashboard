@@ -1,14 +1,42 @@
-import React from "react";
-import { Table } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { Dimmer, Loader, Table } from "semantic-ui-react";
 import Avatar from "../common/Avatar/Avater";
 import routes from "../../routes";
-import { useHistory } from "react-router-dom";
 import PaginationApp from "../common/pagination/pagination-app";
+import useAxios from "../../hooks/use-axios";
+import { authAxios } from "../../config/axios-config";
+import api from "../../api";
+import { useHistory, useLocation } from "react-router-dom";
+import moment from "moment";
+import { truncateString } from "../../utils/truncate-string";
 
 const UsersTable = () => {
   const history = useHistory();
+  const [data, setData] = useState();
+  const [pagination, SetPagination] = useState(0);
+  const { search } = useLocation();
+
+  const { run, isLoading, isError, error } = useAxios([]);
+  useEffect(() => {
+    if (search) {
+      run(
+        authAxios.get(`${api.app.employees.default}${search}`).then((res) => {
+          SetPagination(res?.data?.pagination);
+          setData(res?.data?.data);
+        })
+      );
+    }
+  }, [data?.data?.length, run, search]);
+
+  console.log("====================================");
+  console.log(data);
+  console.log("====================================");
+
   return (
     <div className="p-5">
+      <Dimmer active={isLoading} inverted>
+        <Loader active />
+      </Dimmer>
       <Table basic="very">
         <Table.Header>
           <Table.Row>
@@ -33,211 +61,49 @@ const UsersTable = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button
-                  onClick={() => history.push(routes.app.users.usersView())}
-                  className="text-green border-[1px] border-green rounded-full py-1 px-4"
-                >
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>d86780 - 65</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <Avatar name="Mai Ahmed" className="w-10 h-10 text-base" />
-                <p className="my-auto">Mai Ahmed</p>
-              </div>
-            </Table.Cell>
-            <Table.Cell>Ui/UX</Table.Cell>
-            <Table.Cell>From 7 Am To 3 Pm</Table.Cell>
-            <Table.Cell className="text-green">Active</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-5">
-                <button className="text-green border-[1px] border-green rounded-full py-1 px-4">
-                  View
-                </button>
-                <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                  Edit
-                </button>
-              </div>
-            </Table.Cell>
-          </Table.Row>
+          {data?.map((e) => (
+            <Table.Row>
+              <Table.Cell>{truncateString(e?._id, 9)}</Table.Cell>
+              <Table.Cell>
+                <div className="flex gap-x-5">
+                  <Avatar
+                    name={`${e?.firstName} ${e?.lastName}`}
+                    className="w-10 h-10 text-base"
+                  />
+                  <p className="my-auto">{`${e?.firstName} ${e?.lastName}`}</p>
+                </div>
+              </Table.Cell>
+              <Table.Cell>{e?.groups[0]?.name}</Table.Cell>
+              <Table.Cell>
+                From {moment(e?.timeSlots[0]?.from).format("h:mm A")} To{" "}
+                {moment(e?.timeSlots[0]?.to).format("h:mm A")}
+              </Table.Cell>
+              <Table.Cell
+                className={e?.status === "Active" ? "text-green" : "text-red"}
+              >
+                {e?.status === "Active" ? "Active" : "Un Active"}
+              </Table.Cell>
+              <Table.Cell>
+                <div className="flex gap-x-5">
+                  <button
+                    onClick={() =>
+                      history.push(routes.app.users.usersView(e?._id))
+                    }
+                    className="text-green border-[1px] border-green rounded-full py-1 px-4"
+                  >
+                    View
+                  </button>
+                  <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
+                    Edit
+                  </button>
+                </div>
+              </Table.Cell>
+            </Table.Row>
+          ))}
         </Table.Body>
       </Table>
       <div className="flex justify-end">
-        <PaginationApp />
+        <PaginationApp totalPages={pagination?.totalPages} />
       </div>
     </div>
   );

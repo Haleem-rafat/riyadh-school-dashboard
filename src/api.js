@@ -1,5 +1,8 @@
 const api = {
-  auth: {},
+  auth: {
+    logIN: "/auth/admin/login",
+    refreshToken: "/auth/admin/refresh-token",
+  },
   app: {
     groups: {
       default: `/groups`,
@@ -13,7 +16,7 @@ const api = {
     },
     employees: {
       default: `/employees`,
-      get: `/employees?page=1&perPage=8`,
+      getById: (employeesId) => `/employees/${employeesId}/details`,
       edit: (employeesId) => `/employees/${employeesId}/add-group/`,
     },
     attendance: {

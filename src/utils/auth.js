@@ -35,7 +35,7 @@ class Auth {
     if (!this.hasExpired()) return accessToken;
 
     try {
-      const res = await Axios.post(api.auth.RefrshToken, {
+      const res = await Axios.post(api.auth.refreshToken, {
         refreshToken: refreshToken,
       });
       const data = res.data;
