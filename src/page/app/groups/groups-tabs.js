@@ -47,9 +47,9 @@ const GroupsTabs = () => {
         </p>
         <div>
           {pathname.startsWith(routes.app.groups.timeSlote) ? (
-            <TimeSloteModel />
+            <TimeSloteModel isAdd />
           ) : (
-            <AddGroupsModel />
+            <AddGroupsModel isAdd />
           )}
         </div>
       </div>

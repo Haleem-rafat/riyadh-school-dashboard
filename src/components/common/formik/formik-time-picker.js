@@ -2,7 +2,7 @@ import { Field } from "formik";
 import { TimeInput } from "semantic-ui-calendar-react";
 import { get } from "wild-wild-path";
 
-import "../../../../src/assets/style/formik-time-picker.css";
+// import "../../../../src/assets/style/formik-time-picker.css";
 
 import ErrorMessage from "./error-message";
 
@@ -14,9 +14,11 @@ function FormikTimePicker({ label, name, ...props }) {
         const { value } = field;
 
         return (
-          <div className="Edit_FormikTimePicker relative">
+          <div className="relative">
             <TimeInput
+              className="Edit_FormikTimePicker "
               id={name}
+              placeholder={"00AM : 00PM"}
               closable
               iconPosition="left"
               timeFormat="AMPM"

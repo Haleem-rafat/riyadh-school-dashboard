@@ -6,8 +6,9 @@ import routes from "../../../routes";
 import { useHistory } from "react-router-dom";
 import Avatar from "../Avatar/Avater";
 import PaginationApp from "../pagination/pagination-app";
+import moment from "moment";
 
-const ViewDetailsTable = () => {
+const ViewDetailsTable = ({ timeSlots }) => {
   const history = useHistory();
   return (
     <div className="p-5">
@@ -26,176 +27,32 @@ const ViewDetailsTable = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>2023-06-5</Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-green ">07:00 am</p>
-                <CheckIcon className=" mt-1 " />
-              </div>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex gap-x-1">
-                <p className="text-red">04:00 am</p>
-                <ArrowIcon className="rotate-180 mt-1 " />
-              </div>
-            </Table.Cell>
-          </Table.Row>
+          {timeSlots?.map((e) => (
+            <Table.Row>
+              <Table.Cell>
+                {moment(e?.createdAt).format("DD/MM/YYYY")}
+              </Table.Cell>
+              <Table.Cell>
+                <div className="flex gap-x-1">
+                  <p className="text-green ">
+                    {moment(e[0]?.from).format("h:mm A")}
+                  </p>
+                  <CheckIcon className=" mt-1 " />
+                </div>
+              </Table.Cell>
+              <Table.Cell>
+                <div className="flex gap-x-1">
+                  <p className="text-red">
+                    {" "}
+                    {moment(e[0]?.to).format("h:mm A")}
+                  </p>
+                  <ArrowIcon className="rotate-180 mt-1 " />
+                </div>
+              </Table.Cell>
+            </Table.Row>
+          ))}
         </Table.Body>
       </Table>
-      <div className="flex justify-end">
-        <PaginationApp />
-      </div>
     </div>
   );
 };

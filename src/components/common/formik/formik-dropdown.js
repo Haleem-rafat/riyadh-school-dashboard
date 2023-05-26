@@ -18,11 +18,11 @@ function FormikMultiDropdown({
       {({ form, field }) => {
         const { setFieldValue, setFieldTouched, errors, touched } = form;
         return (
-          <div className="flex flex-col mt-1.5 relative Edit_FormikMultiDropdown ">
+          <div className="relative w-full Edit_FormikMultiDropdown ">
             <Dropdown
+              label={label}
               className="Edit_FormikMultiDropdown"
               id={name}
-              label={label}
               {...field}
               {...props}
               error={Boolean(touched[name] && errors[name])}
@@ -35,6 +35,7 @@ function FormikMultiDropdown({
               search
               fluid
               selection
+              placeholder={label}
             >
               {props.children}
             </Dropdown>

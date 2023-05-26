@@ -11,7 +11,7 @@ const routes = {
     },
     users: {
       default: `/dashboard/users`,
-      usersView: (id = ":id") => `/dashboard/users/view${id}`,
+      usersView: (id = ":id") => `/dashboard/users/view/${id}`,
     },
     groups: {
       default: `/dashboard/groups`,

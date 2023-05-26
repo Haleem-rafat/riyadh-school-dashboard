@@ -4,9 +4,41 @@ import { ReactComponent as AddCircleIcon } from "../../../../src/assets/icons/ad
 import { ReactComponent as CloseIcon } from "../../../../src/assets/icons/close-icon.svg";
 import { Formik } from "formik";
 import FormikInput from "../formik/formik-input";
+import { useHistory } from "react-router-dom";
+import useAxios from "../../../hooks/use-axios";
+import { authAxios } from "../../../config/axios-config";
+import { toast } from "react-hot-toast";
+import routes from "../../../routes";
+import api from "../../../api";
 
-function AddAdminModel() {
+function AddAdminModel({ isAdd, oldName, adminId }) {
+  const history = useHistory();
+
   const [open, setOpen] = React.useState(false);
+  const { run, isLoading, error } = useAxios();
+
+  const handleAddAdmin = (values) => {
+    if (isAdd) {
+      run(authAxios.post(api.app.groups.default, values))
+        .then((res) => {
+          setOpen(false);
+          history.push(routes.app.groups.timeSlote);
+          toast.success("The new timeSlote  has been added successfully");
+        })
+        .catch((err) => {
+          toast.error(error?.massage || "something is wrong please try again");
+        });
+    } else
+      run(authAxios.put(api.app.timeSlots.edit(adminId), values))
+        .then((res) => {
+          setOpen(false);
+          history.push(routes.app.groups.timeSlote);
+          toast.success("The timeSlote  has been Edit successfully");
+        })
+        .catch((err) => {
+          toast.error(error?.massage || "something is wrong please try again");
+        });
+  };
 
   return (
     <Modal

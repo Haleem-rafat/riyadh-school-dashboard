@@ -6,12 +6,10 @@ const api = {
   app: {
     groups: {
       default: `/groups`,
-      get: `/groups?page=1&perPage=8`,
       edit: (groupId) => `/groups/${groupId}`,
     },
     timeSlots: {
       default: `/time-slots`,
-      get: `/time-slots?page=1&perPage=10`,
       edit: (timeSlotId) => `/time-slots/${timeSlotId}`,
     },
     employees: {
@@ -23,8 +21,10 @@ const api = {
       default: `/attendance/checkin`,
     },
     adminsManagers: {
-      post: `/admins/managers/add`,
-      get: `/admins/managers/all?page=1&perPage=10`,
+      postManagers: `/admins/managers/add`,
+      getmanagers: `/admins/managers/all`,
+      getAdmins: `/admins/all`,
+      postAdmins: `/admins/add`,
     },
   },
 };
