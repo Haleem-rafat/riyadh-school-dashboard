@@ -25,9 +25,8 @@ function TimeSloteModel({ isAdd, oldName, timeSlotsId }) {
   const handleAddTmeSlote = (values) => {
     const body = {
       day: values?.day,
-      from:
-        moment(values?.from, "HH:mm").format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
-      to: moment(values?.to, "HH:mm").format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
+      from: moment(values?.from, "LT").format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
+      to: moment(values?.to, "LT").format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
     };
     console.log("====================================");
 

@@ -6,6 +6,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import useAxios from "../../../hooks/use-axios";
 import { authAxios } from "../../../config/axios-config";
 import api from "../../../api";
+import routes from "../../../routes";
+import { toast } from "react-hot-toast";
 
 const AdminTable = () => {
   const history = useHistory();
@@ -33,9 +35,25 @@ const AdminTable = () => {
   console.log("====================================");
   console.log(data);
   console.log("====================================");
+  const { run: runDelete, isLoading: isLoadingDelete } = useAxios([]);
+
+  const handelDelete = (id) => {
+    runDelete(
+      authAxios
+        .delete(`${api.app.adminsManagers.deleteAdmins(id)}${search}`)
+        .then((res) => {
+          history.push(routes.app.admins.default);
+          toast.success("This admin has been deleted successfully");
+        })
+        .catch((err) => {
+          toast.error(error?.massage || "something is wrong please try again");
+        })
+    );
+  };
+
   return (
     <div className="p-5 animate-in">
-      <Dimmer active={isLoading} inverted>
+      <Dimmer active={isLoading || isLoadingDelete} inverted>
         <Loader active />
       </Dimmer>
       <Table basic="very">
@@ -70,7 +88,10 @@ const AdminTable = () => {
                   <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
                     Edit
                   </button>
-                  <button className="text-red border-[1px] border-red rounded-full py-1 px-4">
+                  <button
+                    onClick={() => handelDelete(e?._id)}
+                    className="text-red border-[1px] border-red rounded-full py-1 px-4"
+                  >
                     Delete
                   </button>
                 </div>

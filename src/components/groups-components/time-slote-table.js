@@ -7,6 +7,7 @@ import { authAxios } from "../../config/axios-config";
 import api from "../../api";
 import moment from "moment";
 import TimeSloteModel from "./time-slote-model";
+import { formattedTime } from "../../utils/formatted-time";
 
 const TimeSloteTable = () => {
   const history = useHistory();
@@ -56,8 +57,7 @@ const TimeSloteTable = () => {
             <Table.Row>
               <Table.Cell>{e?.day}</Table.Cell>
               <Table.Cell>
-                From {moment(e?.from).format("H:mm")} To{" "}
-                {moment(e?.to).format("H:mm")}
+                From {formattedTime(e?.from)} To {formattedTime(e?.to)}
               </Table.Cell>
               <Table.Cell>
                 <TimeSloteModel

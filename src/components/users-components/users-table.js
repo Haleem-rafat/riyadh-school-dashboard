@@ -75,8 +75,8 @@ const UsersTable = () => {
               </Table.Cell>
               <Table.Cell>{e?.groups[0]?.name}</Table.Cell>
               <Table.Cell>
-                From {moment(e?.timeSlots[0]?.from).format("h:mm A")} To{" "}
-                {moment(e?.timeSlots[0]?.to).format("h:mm A")}
+                From {moment(e?.timeSlots[0]?.from).format("LT")} To{" "}
+                {moment(e?.timeSlots[0]?.to).format("LT")}
               </Table.Cell>
               <Table.Cell
                 className={e?.status === "Active" ? "text-green" : "text-red"}

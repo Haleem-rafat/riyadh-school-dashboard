@@ -35,10 +35,13 @@ function MangerModel() {
           <div>
             <Formik
               initialValues={{
-                group: "",
+                fullName: "",
+                email: "",
+                password: "",
+                employees: "",
               }}
-              // onSubmit={logIn}
-              // validationSchema={logInSchema}
+              onSubmit={logIn}
+              validationSchema={logInSchema}
             >
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>

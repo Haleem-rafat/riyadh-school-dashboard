@@ -10,6 +10,7 @@ import { authAxios } from "../../../config/axios-config";
 import { toast } from "react-hot-toast";
 import routes from "../../../routes";
 import api from "../../../api";
+import * as Yup from "yup";
 
 function AddAdminModel({ isAdd, oldName, adminId }) {
   const history = useHistory();
@@ -19,17 +20,27 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
 
   const handleAddAdmin = (values) => {
     if (isAdd) {
-      run(authAxios.post(api.app.groups.default, values))
+      run(
+        authAxios.post(api.app.adminsManagers.postAdmins, {
+          ...values,
+          role: "SUB_ADMIN",
+        })
+      )
         .then((res) => {
           setOpen(false);
-          history.push(routes.app.groups.timeSlote);
-          toast.success("The new timeSlote  has been added successfully");
+          history.push(routes.app.admins.default);
+          toast.success("The new sub admin has been added successfully");
         })
         .catch((err) => {
           toast.error(error?.massage || "something is wrong please try again");
         });
     } else
-      run(authAxios.put(api.app.timeSlots.edit(adminId), values))
+      run(
+        authAxios.put(api.app.timeSlots.edit(adminId), {
+          ...values,
+          role: "SUB_ADMIN",
+        })
+      )
         .then((res) => {
           setOpen(false);
           history.push(routes.app.groups.timeSlote);
@@ -39,6 +50,12 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
           toast.error(error?.massage || "something is wrong please try again");
         });
   };
+
+  const handleAddAdminSchema = Yup.object({
+    fullName: Yup.string().required("Required field"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Required field"),
+  });
 
   return (
     <Modal
@@ -67,19 +84,19 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
           <div>
             <Formik
               initialValues={{
-                name: "",
+                fullName: "",
                 email: "",
                 password: "",
               }}
-              // onSubmit={logIn}
-              // validationSchema={logInSchema}
+              onSubmit={handleAddAdmin}
+              validationSchema={handleAddAdminSchema}
             >
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="w-full px-8 ">
                     <div className="mt-10 mx-auto ">
                       <FormikInput
-                        name="name"
+                        name="fullName"
                         placeholder="Full Name"
                         type={"text"}
                       />
@@ -99,7 +116,10 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
                       />
                     </div>
                     <div className="md:flex block justify-center py-8 ">
-                      <Button className="bg-green text-white w-[140px] rounded-full font-serifEN font-normal text-base">
+                      <Button
+                        loading={isLoading}
+                        className="bg-green text-white w-[140px] rounded-full font-serifEN font-normal text-base"
+                      >
                         Add
                       </Button>
                     </div>

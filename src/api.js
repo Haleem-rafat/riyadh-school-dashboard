@@ -4,6 +4,10 @@ const api = {
     refreshToken: "/auth/admin/refresh-token",
   },
   app: {
+    attendances: {
+      get: `/attendances/admin/report`,
+      getById: (employeesId) => `attendances/admin/report/${employeesId}`,
+    },
     groups: {
       default: `/groups`,
       edit: (groupId) => `/groups/${groupId}`,
@@ -22,9 +26,11 @@ const api = {
     },
     adminsManagers: {
       postManagers: `/admins/managers/add`,
-      getmanagers: `/admins/managers/all`,
+      getManagers: `/admins/managers/all`,
+      deleteManagers: (managersId) => `/admins/managers/${managersId}`,
       getAdmins: `/admins/all`,
       postAdmins: `/admins/add`,
+      deleteAdmins: (adminsId) => `/admins/${adminsId}`,
     },
   },
 };

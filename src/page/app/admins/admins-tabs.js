@@ -46,9 +46,9 @@ const AdminsTabs = () => {
         </p>
         <div>
           {pathname.startsWith(routes.app.admins.managers) ? (
-            <AddAdminModel />
+            <AddAdminModel isAdd />
           ) : (
-            <AddAdminModel />
+            <AddAdminModel isAdd />
           )}
         </div>
       </div>
