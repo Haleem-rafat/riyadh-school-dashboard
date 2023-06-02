@@ -42,6 +42,9 @@ const TimeSloteTable = () => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell className="text-gray text-base font-normal">
+              Slot Name
+            </Table.HeaderCell>
+            <Table.HeaderCell className="text-gray text-base font-normal">
               Day
             </Table.HeaderCell>
             <Table.HeaderCell className="text-gray text-base font-normal">
@@ -55,13 +58,24 @@ const TimeSloteTable = () => {
         <Table.Body>
           {data?.map((e) => (
             <Table.Row>
-              <Table.Cell>{e?.day}</Table.Cell>
+              <Table.Cell>{e?.name}</Table.Cell>
               <Table.Cell>
-                From {formattedTime(e?.from)} To {formattedTime(e?.to)}
+                {e?.slots.map((time) => (
+                  <p className="py-0.5">{time?.day}</p>
+                ))}
+              </Table.Cell>
+              <Table.Cell>
+                {e?.slots.map((time) => (
+                  <p className="py-0.5">
+                    From {moment(time?.from).format("hh:mm:A")} To{" "}
+                    {moment(time?.to).format("hh:mm:A")}
+                  </p>
+                ))}
               </Table.Cell>
               <Table.Cell>
                 <TimeSloteModel
-                  oldName={{ day: e?.day, from: e?.from, to: e?.to }}
+                  oldName={e?.name}
+                  oldSlots={e?.slots}
                   timeSlotsId={e?._id}
                 />
               </Table.Cell>

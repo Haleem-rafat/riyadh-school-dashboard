@@ -17,6 +17,7 @@ const PaginationApp = ({ totalPages, perPage, myRef, myRef1 }) => {
       totalPages={totalPages}
       onPageChange={(e, data) => {
         setPage(data?.activePage);
+        setPerPage(10);
       }}
     />
   );

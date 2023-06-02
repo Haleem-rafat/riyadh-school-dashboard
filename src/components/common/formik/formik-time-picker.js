@@ -16,20 +16,18 @@ function FormikTimePicker({ label, name, ...props }) {
         return (
           <div className="relative">
             <TimeInput
-              className="Edit_FormikTimePicker "
-              id={name}
-              placeholder={"00AM : 00PM"}
-              closable
-              iconPosition="left"
-              timeFormat="AMPM"
               {...field}
               {...props}
+              id={name}
+              closable
+              className="Edit_FormikTimePicker "
+              iconPosition="left"
+              timeFormat="AMPM"
               label={<label htmlFor={name}>{label}</label>}
               pickerStyle={{ border: "0" }}
-              clearable
               hideMobileKeyboard
               duration={0}
-              value={value}
+              // value={value}
               onBlur={() => setFieldTouched(name, true)}
               onChange={(e, { value }) => setFieldValue(name, value)}
               error={Boolean(touched[name] && errors[name])}
