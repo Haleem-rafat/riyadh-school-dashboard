@@ -9,6 +9,7 @@ import api from "../../api";
 import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import { truncateString } from "../../utils/truncate-string";
+import EditUseModel from "./edit-users-model";
 
 const UsersTable = () => {
   const history = useHistory();
@@ -75,8 +76,8 @@ const UsersTable = () => {
               </Table.Cell>
               <Table.Cell>{e?.groups[0]?.name}</Table.Cell>
               <Table.Cell>
-                From {moment(e?.timeSlots[0]?.from).format("LT")} To{" "}
-                {moment(e?.timeSlots[0]?.to).format("LT")}
+                From {moment(e?.timeSlots[0]?.slots[0]?.from).format("LT")} To{" "}
+                {moment(e?.timeSlots[0]?.slots[0]?.to).format("LT")}
               </Table.Cell>
               <Table.Cell
                 className={e?.status === "Active" ? "text-green" : "text-red"}
@@ -93,9 +94,11 @@ const UsersTable = () => {
                   >
                     View
                   </button>
-                  <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                    Edit
-                  </button>
+                  <EditUseModel
+                    userId={e?._id}
+                    oldGroup={e?.groups}
+                    oldTimeSlots={e?.timeSlots[0]}
+                  />
                 </div>
               </Table.Cell>
             </Table.Row>

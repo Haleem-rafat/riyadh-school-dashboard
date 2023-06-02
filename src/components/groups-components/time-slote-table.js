@@ -7,7 +7,6 @@ import { authAxios } from "../../config/axios-config";
 import api from "../../api";
 import moment from "moment";
 import TimeSloteModel from "./time-slote-model";
-import { formattedTime } from "../../utils/formatted-time";
 
 const TimeSloteTable = () => {
   const history = useHistory();

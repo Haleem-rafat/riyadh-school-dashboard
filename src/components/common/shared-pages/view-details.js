@@ -66,8 +66,11 @@ const ViewDetails = () => {
               <p className="my-auto text-xl font-medium">Time Slot</p>
               <p className="my-auto text-gray">
                 {" "}
-                From {moment(data?.timeSlots[0]?.from).format("h:mm A")} To{" "}
-                {moment(data?.timeSlots[0]?.to).format("h:mm A")}
+                From{" "}
+                {moment(data?.timeSlots[0]?.slots[0]?.from).format(
+                  "h:mm A"
+                )} To{" "}
+                {moment(data?.timeSlots[0]?.slots[0]?.to).format("h:mm A")}
               </p>
             </div>
           </div>

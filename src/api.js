@@ -19,7 +19,7 @@ const api = {
     employees: {
       default: `/employees`,
       getById: (employeesId) => `/employees/${employeesId}/details`,
-      edit: (employeesId) => `/employees/${employeesId}/add-group/`,
+      edit: (employeesId) => `/employees/${employeesId}/add-group`,
     },
     attendance: {
       default: `/attendance/checkin`,
