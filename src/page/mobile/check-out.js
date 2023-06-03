@@ -28,7 +28,7 @@ const CheckOut = () => {
 
   return (
     <div className="max-w-3xl mx-auto pt-32">
-      <h1 className="text-xl py-2">Select employees to check-in</h1>
+      <h1 className="text-xl py-2">Select employees to check-out</h1>
       <div>
         <Dropdown
           fluid
