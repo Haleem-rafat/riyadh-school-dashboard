@@ -84,14 +84,16 @@ const ReportesTable = () => {
                 <div className="flex gap-x-1">
                   <p className="text-green ">
                     {" "}
-                    {moment(e?.checkIn).format("LT")}
+                    {e?.checkIn ? moment(e?.checkIn).format("LT") : "---"}
                   </p>
                   <CheckIcon className=" mt-1 " />
                 </div>
               </Table.Cell>
               <Table.Cell>
                 <div className="flex gap-x-1">
-                  <p className="text-red">{moment(e?.checkOut).format("LT")}</p>
+                  <p className="text-red">
+                    {e?.checkOut ? moment(e?.checkOut).format("LT") : "---"}
+                  </p>
                   <ArrowIcon className="rotate-180 mt-1 " />
                 </div>
               </Table.Cell>

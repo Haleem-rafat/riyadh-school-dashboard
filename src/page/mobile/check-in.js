@@ -12,6 +12,7 @@ import axios from "axios";
 const CheckIn = () => {
   const history = useHistory();
   const [employeesId, setEmployeesId] = useState([]);
+  const [attendanceId, setAttendanceId] = useState();
   const { allEmployeesOptions, loadingAllEmployeesOptions } =
     useGetAllEmployees();
   const { run, isLoading, isError, error } = useAxios([]);
@@ -19,8 +20,23 @@ const CheckIn = () => {
   const handelCheckIn = () => {
     run(axios.post(api.attendances.in(employeesId)))
       .then((res) => {
-        history.push(routes.attendances.out);
+        // history.push(routes.attendances.out);
+        setAttendanceId(res?.data?.data?._id);
         toast.success("check-in sucsess");
+      })
+      .catch((err) => {
+        toast.error(error?.massage || "something is wrong please try again");
+      });
+  };
+
+  const handelCheckOut = () => {
+    const body = {
+      attendanceId: attendanceId,
+    };
+    run(axios.post(api.attendances.out(employeesId), body))
+      .then((res) => {
+        // history.push(routes.attendances.in);
+        toast.success("Check-Out sucsess");
       })
       .catch((err) => {
         toast.error(error?.massage || "something is wrong please try again");
@@ -29,7 +45,9 @@ const CheckIn = () => {
 
   return (
     <div className="max-w-3xl mx-auto pt-32">
-      <h1 className="text-xl py-2">Select employees to check-out</h1>
+      <h1 className="text-xl py-2">
+        Select employees to check-in or check out
+      </h1>
       <div>
         <Dropdown
           fluid
@@ -43,13 +61,21 @@ const CheckIn = () => {
           }}
         />
       </div>
-      <div className="flex justify-center my-10">
+      <div className="flex flex-wrap gap-5 justify-center my-10">
         <Button
           onClick={() => handelCheckIn()}
           loading={isLoading}
-          className="bg-green-500 w-[350px] h-[350px] rounded-full text-5xl text-white"
+          className="bg-green-500 w-[300px] h-[300px] rounded-full text-5xl text-white"
         >
           Check-in
+        </Button>
+        <Button
+          disabled={attendanceId ? false : true}
+          loading={isLoading}
+          onClick={() => handelCheckOut()}
+          className="bg-red-500 w-[300px] h-[300px] rounded-full text-5xl text-white"
+        >
+          Check-Out
         </Button>
       </div>
     </div>
