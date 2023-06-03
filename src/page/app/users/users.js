@@ -9,7 +9,7 @@ const Users = () => {
         <div className="bg-[#FBFBFE] w-full h-[60px] rounded-t-lg  animate-in ">
           <p className="pt-[15px] pl-[15px] text-2xl">Users</p>
         </div>
-        <AddUsersModel />
+        {/* <AddUsersModel /> */}
       </div>
       <div className="bg-white mx-10 rounded-lg animate-in mt-10">
         <UsersTable />

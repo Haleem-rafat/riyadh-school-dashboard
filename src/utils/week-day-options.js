@@ -10,6 +10,11 @@ export const weekDAyoptions = [
 
 export const timeSloteOptions = [
   {
+    day: "Sunday",
+    from: { value: "from", name: "fromSunday" },
+    to: { value: "to", name: "toSunday" },
+  },
+  {
     day: "Monday",
     from: { value: "from", name: "fromMonday" },
     to: { value: "to", name: "toMonday" },
@@ -38,10 +43,5 @@ export const timeSloteOptions = [
     day: "Saturday",
     from: { value: "from", name: "fromSaturday" },
     to: { value: "to", name: "toSaturday" },
-  },
-  {
-    day: "Sunday",
-    from: { value: "from", name: "fromSunday" },
-    to: { value: "to", name: "toSunday" },
   },
 ];

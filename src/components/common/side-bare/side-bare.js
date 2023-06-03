@@ -9,13 +9,17 @@ import { ReactComponent as LogOutIcon } from "../../../../src/assets/icons/log-o
 import { useHistory, useLocation } from "react-router-dom";
 import routes from "../../../routes";
 import { motion } from "framer-motion";
+import { useAuthState } from "../../../context/auth-context";
+import useLocalStorage from "../../../hooks/use-localstorage";
 
 const SideBare = ({ SetSid, sid }) => {
   const history = useHistory();
   const { pathname } = useLocation();
+  const { logout } = useAuthState();
+  const [roleSys] = useLocalStorage("roleSys");
 
   console.log("====================================");
-  console.log(sid);
+  console.log(roleSys);
   console.log("====================================");
 
   const sidebarVariants = {
@@ -51,68 +55,84 @@ const SideBare = ({ SetSid, sid }) => {
           src={mainLogo}
           alt="mainLogo"
         />
-        <NavLink
-          icon={<RequstIcon className="mx-auto " />}
-          title="Reportes"
-          isActive={
-            pathname.length === 1 ||
-            pathname.startsWith(routes.app.reportes.default)
-          }
-          onClick={() => {
-            history.push(routes.app.reportes.default);
-          }}
-        />
-        <NavLink
-          icon={<UsersIcon className="mx-auto " />}
-          title="Users"
-          isActive={
-            pathname.length === 1 ||
-            pathname.startsWith(routes.app.users.default)
-          }
-          onClick={() => {
-            history.push(routes.app.users.default);
-          }}
-        />
-        <NavLink
-          icon={<GroupIcon className="mx-auto " />}
-          title="Groups"
-          isActive={
-            pathname.length === 1 ||
-            pathname.startsWith(routes.app.groups.default)
-          }
-          onClick={() => {
-            history.push(routes.app.groups.default);
-          }}
-        />
-        <NavLink
-          icon={<SyncIcon className="mx-auto " />}
-          title="Sync"
-          isActive={
-            pathname.length === 1 ||
-            pathname.startsWith(routes.app.sync.default)
-          }
-          onClick={() => {
-            history.push(routes.app.sync.default);
-          }}
-        />
-        <NavLink
-          icon={<AdminIcon className="mx-auto " />}
-          title="Admins"
-          isActive={
-            pathname.length === 1 ||
-            pathname.startsWith(routes.app.admins.default)
-          }
-          onClick={() => {
-            history.push(routes.app.admins.default);
-          }}
-        />
-        <NavLink
-          icon={<LogOutIcon className="mx-auto " />}
-          title="Log Out"
-          onClick={() => {
-            history.push(routes.auth.logIn);
-          }}
-        />
+        {roleSys === "MANAGER" ? (
+          <div>
+            <NavLink
+              icon={<RequstIcon className="mx-auto " />}
+              title="Reportes"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.reportes.default)
+              }
+              onClick={() => {
+                history.push(routes.app.reportes.default);
+              }}
+            />
+            <NavLink
+              icon={<UsersIcon className="mx-auto " />}
+              title="Users"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.users.default)
+              }
+              onClick={() => {
+                history.push(routes.app.users.default);
+              }}
+            />
+            <NavLink
+              icon={<LogOutIcon className="mx-auto " />}
+              title="Log Out"
+              onClick={() => {
+                history.push(routes.auth.logIn);
+                logout();
+              }}
+            />
+          </div>
+        ) : (
+          <div>
+            <NavLink
+              icon={<GroupIcon className="mx-auto " />}
+              title="Groups"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.groups.default)
+              }
+              onClick={() => {
+                history.push(routes.app.groups.default);
+              }}
+            />
+            <NavLink
+              icon={<SyncIcon className="mx-auto " />}
+              title="Sync"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.sync.default)
+              }
+              onClick={() => {
+                history.push(routes.app.sync.default);
+              }}
+            />
+            <NavLink
+              icon={<AdminIcon className="mx-auto " />}
+              title="Admins"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.admins.default)
+              }
+              onClick={() => {
+                history.push(routes.app.admins.default);
+              }}
+            />
+            <NavLink
+              icon={<LogOutIcon className="mx-auto " />}
+              title="Log Out"
+              onClick={() => {
+                history.push(routes.auth.logIn);
+                logout();
+              }}
+            />
+          </div>
+        )}
       </div>
 
       <div className="md:hidden container ">
@@ -138,74 +158,91 @@ const SideBare = ({ SetSid, sid }) => {
             alt="mainLogo"
           />
           <div>
-            <NavLink
-              icon={<RequstIcon className="mx-auto " />}
-              title="Reportes"
-              isActive={
-                pathname.length === 1 ||
-                pathname.startsWith(routes.app.reportes.default)
-              }
-              onClick={() => {
-                history.push(routes.app.reportes.default);
-                SetSid(false);
-              }}
-            />
-            <NavLink
-              icon={<UsersIcon className="mx-auto " />}
-              title="Users"
-              isActive={
-                pathname.length === 1 ||
-                pathname.startsWith(routes.app.users.default)
-              }
-              onClick={() => {
-                history.push(routes.app.users.default);
-                SetSid(false);
-              }}
-            />
-            <NavLink
-              icon={<GroupIcon className="mx-auto " />}
-              title="Groups"
-              isActive={
-                pathname.length === 1 ||
-                pathname.startsWith(routes.app.groups.default)
-              }
-              onClick={() => {
-                history.push(routes.app.groups.default);
-                SetSid(false);
-              }}
-            />
-            <NavLink
-              icon={<SyncIcon className="mx-auto " />}
-              title="Sync"
-              isActive={
-                pathname.length === 1 ||
-                pathname.startsWith(routes.app.sync.default)
-              }
-              onClick={() => {
-                history.push(routes.app.sync.default);
-                SetSid(false);
-              }}
-            />
-            <NavLink
-              icon={<AdminIcon className="mx-auto " />}
-              title="Admins"
-              isActive={
-                pathname.length === 1 ||
-                pathname.startsWith(routes.app.admins.default)
-              }
-              onClick={() => {
-                history.push(routes.app.admins.default);
-                SetSid(false);
-              }}
-            />
-            <NavLink
-              icon={<LogOutIcon className="mx-auto " />}
-              title="Log Out"
-              onClick={() => {
-                history.push(routes.auth.logIn);
-                SetSid(false);
-              }}
-            />
+            {roleSys === "MANAGER" ? (
+              <div>
+                <NavLink
+                  icon={<RequstIcon className="mx-auto " />}
+                  title="Reportes"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.reportes.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.reportes.default);
+                    SetSid(false);
+                  }}
+                />
+                <NavLink
+                  icon={<UsersIcon className="mx-auto " />}
+                  title="Users"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.users.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.users.default);
+                    SetSid(false);
+                  }}
+                />
+                <NavLink
+                  icon={<LogOutIcon className="mx-auto " />}
+                  title="Log Out"
+                  onClick={() => {
+                    history.push(routes.auth.logIn);
+                    SetSid(false);
+                    logout();
+                  }}
+                />
+              </div>
+            ) : (
+              <div>
+                <NavLink
+                  icon={<GroupIcon className="mx-auto " />}
+                  title="Groups"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.groups.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.groups.default);
+                    SetSid(false);
+                  }}
+                />
+                <NavLink
+                  icon={<SyncIcon className="mx-auto " />}
+                  title="Sync"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.sync.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.sync.default);
+                    SetSid(false);
+                  }}
+                />
+                <NavLink
+                  icon={<AdminIcon className="mx-auto " />}
+                  title="Admins"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.admins.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.admins.default);
+                    SetSid(false);
+                  }}
+                />
+                <NavLink
+                  icon={<LogOutIcon className="mx-auto " />}
+                  title="Log Out"
+                  onClick={() => {
+                    history.push(routes.auth.logIn);
+                    SetSid(false);
+                    logout();
+                  }}
+                />
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

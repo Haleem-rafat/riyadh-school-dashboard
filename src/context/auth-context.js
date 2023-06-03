@@ -7,7 +7,7 @@ import useAxios from "../hooks/use-axios";
 
 const AuthContext = React.createContext();
 
-// const WHITE_LIST = [routes.auth.forgetpass.default, routes.auth.default];
+const WHITE_LIST = [routes.attendances.default];
 
 function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -28,18 +28,20 @@ function AuthProvider({ children }) {
 
   const logout = () => {
     Auth.setToken({ newAccessToken: "", newRefreshToken: "" });
-    history.push(routes.app.home);
+    history.push(routes.auth.logIn);
   };
 
   React.useEffect(() => {
     Auth.getUser().then((user) => {
       if (!user) {
-        history.push(routes.auth.logIn);
+        if (WHITE_LIST.filter((w) => pathname.startsWith(w)).length === 0) {
+          history.push(routes.auth.logIn);
+        }
       }
       setUser(user);
       setIsLoading(false);
     });
-  }, []);
+  }, [history]);
 
   React.useLayoutEffect(() => {
     if (isLoading) document.body.classList.add("bg-gray-100");

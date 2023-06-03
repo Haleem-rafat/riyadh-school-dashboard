@@ -7,6 +7,7 @@ import GroupsTable from "../../../components/groups-components/groups-table";
 import TimeSloteTable from "../../../components/groups-components/time-slote-table";
 import AddGroupsModel from "../../../components/groups-components/add-groups-model";
 import TimeSloteModel from "../../../components/groups-components/time-slote-model";
+import AddTimeSloteModel from "../../../components/groups-components/add-time-slote-model";
 
 const GroupsTabs = () => {
   const { pathname } = useLocation();
@@ -47,7 +48,7 @@ const GroupsTabs = () => {
         </p>
         <div>
           {pathname.startsWith(routes.app.groups.timeSlote) ? (
-            <TimeSloteModel isAdd />
+            <AddTimeSloteModel />
           ) : (
             <AddGroupsModel isAdd />
           )}

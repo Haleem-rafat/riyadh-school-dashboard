@@ -15,7 +15,7 @@ import useAxios from "../../hooks/use-axios";
 import rightAuthLogo from "../../../src/assets/img/right-auth-logo.png";
 import mainLogo from "../../../src/assets/img/main-logo.png";
 
-import auth from "../../utils/auth";
+import Auth from "../../utils/auth";
 import api from "../../api";
 import { axios } from "../../config/axios-config";
 
@@ -28,10 +28,11 @@ const LogIn = () => {
     run(axios.post(api.auth.logIN, values))
       .then((res) => {
         console.log("====================================");
-        console.log(res);
+        console.log(res?.data?.data?.role);
         console.log("====================================");
+        window.localStorage.setItem("roleSys", res?.data?.data?.role);
         const { accessToken, refreshToken } = res.data.data;
-        auth.setToken({
+        Auth.setToken({
           newAccessToken: accessToken,
           newRefreshToken: refreshToken,
         });
@@ -44,7 +45,7 @@ const LogIn = () => {
 
   const logInSchema = Yup.object({
     email: Yup.string().required("Required field"),
-    password: Yup.string().min(8).max(20).required("Required field").trim(),
+    password: Yup.string().min(6).max(20).required("Required field").trim(),
   });
 
   return (
