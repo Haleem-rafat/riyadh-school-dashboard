@@ -34,6 +34,10 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
       });
   };
 
+  console.log("====================================");
+  console.log(oldTimeSlots);
+  console.log("====================================");
+
   return (
     <Modal
       className="md:w-[600px] w-full h-auto rounded-lg bg-background-sub scale-in"
@@ -59,7 +63,7 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
             <Formik
               initialValues={{
                 groupId: oldGroup?.map((e) => e?._id) || "",
-                timeSlotId: oldGroup?.map((e) => e?._id) || "",
+                timeSlotId: oldTimeSlots?.map((e) => e?._id) || "",
               }}
               // validationSchema={logInSchema}
               onSubmit={handleEditUser}
@@ -72,16 +76,18 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
                       <FormikMultiDropdown
                         name="groupId"
                         label="Groups"
-                        option={AllGroupOptions}
+                        options={AllGroupOptions}
                         loading={loadingGroupOptions}
+                        multiple
                       />
                     </div>
                     <div className="mt-10 mx-auto ">
                       <FormikMultiDropdown
                         name="timeSlotId"
                         label="Time Slots"
-                        option={AllTimeSlots}
+                        options={AllTimeSlots}
                         loading={loadingTimeSlotsOptions}
+                        multiple
                       />
                     </div>
                     <div className="md:flex block justify-center py-8 ">

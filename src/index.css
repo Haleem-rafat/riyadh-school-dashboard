@@ -89,9 +89,9 @@
 }
 /* /////////////////////////////////////////////////////////////////////// */
 .Edit_FormikMultiDropdown.ui.fluid.dropdown {
-  @apply rounded-xl h-[50px] 
+  @apply rounded-xl py-[12px] 
 }
 
 .ui.form .field .ui.input input, .ui.form .fields .field .ui.input input{
-@apply rounded-xl h-[50px] 
+@apply rounded-xl py-[12px] 
 }

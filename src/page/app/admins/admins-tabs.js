@@ -6,6 +6,7 @@ import routes from "../../../routes";
 import AdminTable from "../../../components/common/admins-components/admin-table";
 import MangerTable from "../../../components/common/admins-components/manger-table";
 import AddAdminModel from "../../../components/common/admins-components/add-admin-model";
+import AddMangerModel from "../../../components/common/admins-components/add-manger-model";
 
 const AdminsTabs = () => {
   const { pathname } = useLocation();
@@ -46,7 +47,7 @@ const AdminsTabs = () => {
         </p>
         <div>
           {pathname.startsWith(routes.app.admins.managers) ? (
-            <AddAdminModel isAdd />
+            <AddMangerModel isAdd />
           ) : (
             <AddAdminModel isAdd />
           )}

@@ -74,10 +74,15 @@ const UsersTable = () => {
                   <p className="my-auto">{`${e?.firstName} ${e?.lastName}`}</p>
                 </div>
               </Table.Cell>
-              <Table.Cell>{e?.groups[0]?.name}</Table.Cell>
               <Table.Cell>
-                From {moment(e?.timeSlots[0]?.slots[0]?.from).format("LT")} To{" "}
-                {moment(e?.timeSlots[0]?.slots[0]?.to).format("LT")}
+                {e?.groups.map((e) => (
+                  <p>{e?.name}</p>
+                ))}
+              </Table.Cell>
+              <Table.Cell>
+                {e?.timeSlots.map((e) => (
+                  <p>{e?.name}</p>
+                ))}
               </Table.Cell>
               <Table.Cell
                 className={e?.status === "Active" ? "text-green" : "text-red"}
@@ -97,7 +102,7 @@ const UsersTable = () => {
                   <EditUseModel
                     userId={e?._id}
                     oldGroup={e?.groups}
-                    oldTimeSlots={e?.timeSlots[0]}
+                    oldTimeSlots={e?.timeSlots}
                   />
                 </div>
               </Table.Cell>

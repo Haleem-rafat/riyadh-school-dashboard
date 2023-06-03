@@ -10,30 +10,29 @@ const useGetAllTimeSlots = () => {
   const { run, isLoading, error, isError } = useAxios();
 
   useEffect(() => {
-    run(authAxios.get(api.app.timeSlots.default)).then(({ data }) => {
-      console.log("====================================");
-      console.log(data);
-      console.log("====================================");
+    run(authAxios.get(`/time-slots/list`)).then(({ data }) => {
       const AllTimeSlots = data.data;
       const options = [];
 
       AllTimeSlots.forEach((d) =>
         options.push({
-          text: `${moment(d?.from?.replace("Z", "")).format(
-            "hh:mm:A"
-          )} ${moment(d?.to?.replace("Z", "")).format("hh:mm:A")} `,
+          text: d?.name,
           key: d?._id,
           value: d._id,
         })
       );
 
       console.log("====================================");
-      console.log({ AllTimeSlots });
+      console.log({ options });
       console.log("====================================");
 
       setAllTimeSlotsOptions(options);
     });
   }, [run]);
+
+  console.log("====================================");
+  console.log({ AllTimeSlots });
+  console.log("====================================");
 
   return {
     AllTimeSlots,

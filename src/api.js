@@ -25,11 +25,15 @@ const api = {
       default: `/attendance/checkin`,
     },
     adminsManagers: {
+      // manger
       postManagers: `/admins/managers/add`,
       getManagers: `/admins/managers/all`,
+      editManagers: (managersId) => `/admins/managers/${managersId}`,
       deleteManagers: (managersId) => `/admins/managers/${managersId}`,
+      // admin
       getAdmins: `/admins/all`,
       postAdmins: `/admins/add`,
+      edit: (adminsId) => `/admins/${adminsId}`,
       deleteAdmins: (adminsId) => `/admins/${adminsId}`,
     },
   },

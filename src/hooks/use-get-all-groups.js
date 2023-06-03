@@ -9,11 +9,8 @@ const useGetAllGroups = () => {
   const { run, isLoading, error, isError } = useAxios();
 
   useEffect(() => {
-    run(authAxios.get(api.app.groups.default)).then(({ data }) => {
-      console.log("====================================");
-      console.log(data);
-      console.log("====================================");
-      const GetAllGroupOptions = data;
+    run(authAxios.get(`groups/list`)).then(({ data }) => {
+      const GetAllGroupOptions = data?.data;
       const options = [];
 
       GetAllGroupOptions.forEach((d) =>

@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Dimmer, Loader, Table } from "semantic-ui-react";
 import Avatar from "../Avatar/Avater";
 import PaginationApp from "../pagination/pagination-app";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import useAxios from "../../../hooks/use-axios";
 import { authAxios } from "../../../config/axios-config";
 import api from "../../../api";
+import AddMangerModel from "./add-manger-model";
+import { toast } from "react-hot-toast";
+import routes from "../../../routes";
+import ViewEmployeesModel from "./view-employees-model";
 
 const MangerTable = () => {
+  const history = useHistory();
+
   const [data, setData] = useState();
   const [pagination, SetPagination] = useState(0);
   const { search } = useLocation();
@@ -21,20 +27,29 @@ const MangerTable = () => {
           .then((res) => {
             SetPagination(res?.data?.pagination);
             setData(res?.data?.data);
-            console.log("====================================");
-            console.log(res);
-            console.log("====================================");
           })
       );
     }
   }, [data?.data?.length, run, search]);
 
+  const { run: runD, isLoading: isLoadingD } = useAxios([]);
+  const handelDeleteManger = (mangerId) => {
+    runD(authAxios.delete(api.app.adminsManagers.deleteManagers(mangerId)))
+      .then((res) => {
+        history.push(routes.app.admins.managers);
+        toast.success("The manger has been Edit successfully");
+      })
+      .catch((err) => {
+        toast.error(error?.massage || "something is wrong please try again");
+      });
+  };
+
   console.log("====================================");
-  console.log(data);
+  console.log({ data });
   console.log("====================================");
   return (
     <div className="p-5 animate-in">
-      <Dimmer active={isLoading} inverted>
+      <Dimmer active={isLoading || isLoadingD} inverted>
         <Loader active />
       </Dimmer>
       <Table basic="very">
@@ -59,25 +74,26 @@ const MangerTable = () => {
             <Table.Row>
               <Table.Cell>
                 <div className="flex gap-x-5">
-                  <Avatar
-                    name={`${e?.fullName}`}
-                    className="w-10 h-10 text-base"
-                  />
-                  <p className="my-auto">{`${e?.fullName}`}</p>
+                  <Avatar name={e?.fullName} className="w-10 h-10 text-base" />
+                  <p className="my-auto">{e?.fullName}</p>
                 </div>
               </Table.Cell>
-              <Table.Cell>{`${e?.email}`}</Table.Cell>
+              <Table.Cell>{e?.email}</Table.Cell>
               <Table.Cell>
-                <button className="text-primary border-[1px] border-primary rounded-full py-1 px-4">
-                  View
-                </button>
+                <ViewEmployeesModel allemployees={e?.employees} />
               </Table.Cell>
               <Table.Cell>
                 <div className="flex gap-x-5">
-                  <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
-                    Edit
-                  </button>
-                  <button className="text-red border-[1px] border-red rounded-full py-1 px-4">
+                  <AddMangerModel
+                    mangerId={e?._id}
+                    oldName={e?.fullName}
+                    oldEmail={e?.email}
+                    oldEmployees={e?.employees}
+                  />
+                  <button
+                    onClick={() => handelDeleteManger(e?._id)}
+                    className="text-red border-[1px] border-red rounded-full py-1 px-4"
+                  >
                     Delete
                   </button>
                 </div>
