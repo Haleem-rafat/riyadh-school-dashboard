@@ -4,9 +4,12 @@ import Avatar from "../Avatar/Avater";
 import { Input } from "semantic-ui-react";
 import routes from "../../../routes";
 import { useHistory } from "react-router-dom";
+import useLocalStorage from "../../../hooks/use-localstorage";
 
 const NavBare = () => {
   const history = useHistory();
+  const [name] = useLocalStorage("name");
+
   return (
     <div className="w-full bg-white">
       <div className="md:ml-[170px] ml-5 mx-auto flex justify-between gap-x-10 h-[110px]">
@@ -23,7 +26,7 @@ const NavBare = () => {
             className="mt-1.5 cursor-pointer"
             onClick={() => history.push(routes.app.notification.default)}
           />
-          <Avatar name="Haleem Rafat" className={"w-[45px] h-[45px]"} />
+          <Avatar name={name} className={"w-[45px] h-[45px]"} />
         </div>
       </div>
     </div>

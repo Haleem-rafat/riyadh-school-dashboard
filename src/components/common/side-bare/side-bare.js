@@ -19,7 +19,7 @@ const SideBare = ({ SetSid, sid }) => {
   const [roleSys] = useLocalStorage("roleSys");
 
   console.log("====================================");
-  console.log(roleSys);
+  console.log(roleSys === "MANAGER");
   console.log("====================================");
 
   const sidebarVariants = {
@@ -90,6 +90,28 @@ const SideBare = ({ SetSid, sid }) => {
           </div>
         ) : (
           <div>
+            <NavLink
+              icon={<RequstIcon className="mx-auto " />}
+              title="Reportes"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.reportes.default)
+              }
+              onClick={() => {
+                history.push(routes.app.reportes.default);
+              }}
+            />
+            <NavLink
+              icon={<UsersIcon className="mx-auto " />}
+              title="Users"
+              isActive={
+                pathname.length === 1 ||
+                pathname.startsWith(routes.app.users.default)
+              }
+              onClick={() => {
+                history.push(routes.app.users.default);
+              }}
+            />
             <NavLink
               icon={<GroupIcon className="mx-auto " />}
               title="Groups"
@@ -196,6 +218,30 @@ const SideBare = ({ SetSid, sid }) => {
               </div>
             ) : (
               <div>
+                <NavLink
+                  icon={<RequstIcon className="mx-auto " />}
+                  title="Reportes"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.reportes.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.reportes.default);
+                    SetSid(false);
+                  }}
+                />
+                <NavLink
+                  icon={<UsersIcon className="mx-auto " />}
+                  title="Users"
+                  isActive={
+                    pathname.length === 1 ||
+                    pathname.startsWith(routes.app.users.default)
+                  }
+                  onClick={() => {
+                    history.push(routes.app.users.default);
+                    SetSid(false);
+                  }}
+                />
                 <NavLink
                   icon={<GroupIcon className="mx-auto " />}
                   title="Groups"

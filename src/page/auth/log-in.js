@@ -28,9 +28,10 @@ const LogIn = () => {
     run(axios.post(api.auth.logIN, values))
       .then((res) => {
         console.log("====================================");
-        console.log(res?.data?.data?.role);
+        console.log(res?.data?.data);
         console.log("====================================");
         window.localStorage.setItem("roleSys", res?.data?.data?.role);
+        window.localStorage.setItem("name", res?.data?.data?.fullName);
         const { accessToken, refreshToken } = res.data.data;
         Auth.setToken({
           newAccessToken: accessToken,
