@@ -37,5 +37,9 @@ const api = {
       deleteAdmins: (adminsId) => `/admins/${adminsId}`,
     },
   },
+  attendances: {
+    in: (employeeId) => `/attendances/check-in/${employeeId}`,
+    out: (employeeId) => `/attendances/check-out/${employeeId}`,
+  },
 };
 export default api;

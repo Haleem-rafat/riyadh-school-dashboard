@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
   React.useEffect(() => {
     Auth.getUser().then((user) => {
       if (!user) {
-        history.push(routes.app.home);
+        history.push(routes.auth.logIn);
       }
       setUser(user);
       setIsLoading(false);

@@ -30,6 +30,7 @@ const routes = {
   },
 
   attendances: {
+    default: "/attendances",
     in: "/attendances/check-in",
     out: "/attendances/check-out",
   },
