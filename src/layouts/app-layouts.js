@@ -10,6 +10,8 @@ import AdminsTabs from "../page/app/admins/admins-tabs";
 import ViewDetails from "../components/common/shared-pages/view-details";
 import Notification from "../page/app/notification/notification";
 import { BiMenuAltLeft } from "react-icons/bi";
+import CheckIn from "../page/mobile/check-in";
+import CheckOut from "../page/mobile/check-out";
 
 const AppLayouts = () => {
   const [sid, SetSid] = useState(false);
@@ -30,6 +32,8 @@ const AppLayouts = () => {
           </button>
         </div>
         <Switch>
+          {/* <Route path={routes.app.attendances.in} component={CheckIn} />
+          <Route path={routes.app.attendances.out} component={CheckOut} /> */}
           <Route
             path={routes.app.reportes.reportesView()}
             component={ViewDetails}

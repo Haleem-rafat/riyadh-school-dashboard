@@ -75,7 +75,7 @@
 /* /////////////////////////////////////////////////////////////////////// */
 /* //////////////////////////////Edit_Pagination_App///////////////////// */
 .Edit_Pagination_App.ui.pagination.menu .item{
-  @apply bg-white outline-2 outline outline-primary flex justify-center p-0 min-w-[25px] min-h-[25px] rounded-l !important
+  @apply bg-white outline-2 outline outline-primary flex justify-center p-0 min-w-[25px] min-h-[25px] rounded-l  !important
 }
 .Edit_Pagination_App.ui.secondary.menu .active.item{
   @apply bg-primary text-white !important

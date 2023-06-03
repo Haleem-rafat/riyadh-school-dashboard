@@ -12,7 +12,7 @@ import routes from "../../../routes";
 import api from "../../../api";
 import * as Yup from "yup";
 
-function AddAdminModel({ isAdd, oldName, adminId }) {
+function AddAdminModel({ isAdd, oldName, oldEmail, adminId }) {
   const history = useHistory();
 
   const [open, setOpen] = React.useState(false);
@@ -23,7 +23,7 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
       run(
         authAxios.post(api.app.adminsManagers.postAdmins, {
           ...values,
-          role: "SUB_ADMIN",
+          role: "SUPER_ADMIN",
         })
       )
         .then((res) => {
@@ -36,15 +36,15 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
         });
     } else
       run(
-        authAxios.put(api.app.timeSlots.edit(adminId), {
-          ...values,
-          role: "SUB_ADMIN",
+        authAxios.put(api.app.adminsManagers.edit(adminId), {
+          fullName: values.fullName,
+          email: values.email,
         })
       )
         .then((res) => {
           setOpen(false);
-          history.push(routes.app.groups.timeSlote);
-          toast.success("The timeSlote  has been Edit successfully");
+          history.push(routes.app.admins.default);
+          toast.success("The admin  has been Edit successfully");
         })
         .catch((err) => {
           toast.error(error?.massage || "something is wrong please try again");
@@ -54,7 +54,11 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
   const handleAddAdminSchema = Yup.object({
     fullName: Yup.string().required("Required field"),
     email: Yup.string().email("Invalid email").required("Email is required"),
-    password: Yup.string().required("Required field"),
+    password: Yup.string().when([], {
+      is: () => isAdd,
+      then: Yup.string().required("Required field"),
+      otherwise: Yup.string().notRequired(),
+    }),
   });
 
   return (
@@ -64,18 +68,24 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-        <Button className="bg-green text-white md:w-[200px] w-full rounded-full font-serifEN font-normal text-base">
-          <div className="flex justify-center gap-x-4">
-            <AddCircleIcon />
-            <p className="text-xl">Add admin</p>
-          </div>
-        </Button>
+        isAdd ? (
+          <Button className="bg-green text-white md:w-[200px] w-full rounded-full font-serifEN font-normal text-base">
+            <div className="flex justify-center gap-x-4">
+              <AddCircleIcon />
+              <p className="text-xl">Add admin</p>
+            </div>
+          </Button>
+        ) : (
+          <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4 font-serifEN text-base">
+            <p className="text-xl">Edit </p>
+          </button>
+        )
       }
     >
       <Modal.Content className="md:w-[600px] w-full h-auto bg-background-sub rounded-lg">
         <div className="bg-white md:w-[550px] w-full h-auto rounded-lg mx-auto my-0 ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">
-            <p className="text-xl pt-3">Add admin</p>
+            <p className="text-xl pt-3">{isAdd ? "Add admin" : "Edit admin"}</p>
             <CloseIcon
               className="w-8 cursor-pointer"
               onClick={() => setOpen(false)}
@@ -84,8 +94,8 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
           <div>
             <Formik
               initialValues={{
-                fullName: "",
-                email: "",
+                fullName: oldName || "",
+                email: oldEmail || "",
                 password: "",
               }}
               onSubmit={handleAddAdmin}
@@ -108,7 +118,7 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
                         type={"email"}
                       />
                     </div>
-                    <div className="mt-10 mx-auto ">
+                    <div className={isAdd ? "mt-10 mx-auto" : "hidden"}>
                       <FormikInput
                         name="password"
                         placeholder="password"
@@ -120,7 +130,7 @@ function AddAdminModel({ isAdd, oldName, adminId }) {
                         loading={isLoading}
                         className="bg-green text-white w-[140px] rounded-full font-serifEN font-normal text-base"
                       >
-                        Add
+                        {isAdd ? "Add " : "Edit "}
                       </Button>
                     </div>
                   </div>

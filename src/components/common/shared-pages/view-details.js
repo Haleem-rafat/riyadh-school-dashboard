@@ -7,13 +7,17 @@ import useAxios from "../../../hooks/use-axios";
 import api from "../../../api";
 import { useLocation, useParams } from "react-router-dom";
 import moment from "moment";
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Dimmer, Dropdown, Loader } from "semantic-ui-react";
+import useGetAllGroups from "../../../hooks/use-get-all-groups";
+import useGetAllTimeSlots from "../../../hooks/use-get-all-time-slots";
 
 const ViewDetails = () => {
   const [data, setData] = useState();
   const [pagination, SetPagination] = useState(0);
   const { search } = useLocation();
   const { id } = useParams();
+  const { AllGroupOptions, loadingGroupOptions } = useGetAllGroups();
+  const { AllTimeSlots, loadingTimeSlotsOptions } = useGetAllTimeSlots();
 
   const { run, isLoading, isError, error } = useAxios([]);
   useEffect(() => {
@@ -29,9 +33,16 @@ const ViewDetails = () => {
       );
     }
   }, [id, run, search]);
+
+  console.log("====================================");
+  console.log({ data });
+  console.log("====================================");
   return (
     <div className="bg-background h-screen pt-8 z-0 ">
-      <Dimmer active={isLoading} inverted>
+      <Dimmer
+        active={isLoading || loadingGroupOptions || loadingTimeSlotsOptions}
+        inverted
+      >
         <Loader active />
       </Dimmer>
       <div className="bg-white mx-10 rounded-lg animate-in ">
@@ -57,7 +68,14 @@ const ViewDetails = () => {
           <div className="flex">
             <div>
               <p className="my-auto text-xl font-medium">Group</p>
-              <p className="my-auto text-gray">{data?.groups?.[0]?.name}</p>
+              <p className="my-auto text-gray">
+                <Dropdown
+                  className="z-50"
+                  options={AllGroupOptions}
+                  defaultValue={data?.groups?.[0]?._id}
+                  value={data?.groups?.[0]?._id}
+                />
+              </p>
             </div>
           </div>
           <div className="border-r-4"></div>
@@ -65,19 +83,18 @@ const ViewDetails = () => {
             <div>
               <p className="my-auto text-xl font-medium">Time Slot</p>
               <p className="my-auto text-gray">
-                {" "}
-                From{" "}
-                {moment(data?.timeSlots[0]?.slots[0]?.from).format(
-                  "h:mm A"
-                )} To{" "}
-                {moment(data?.timeSlots[0]?.slots[0]?.to).format("h:mm A")}
+                <Dropdown
+                  options={AllTimeSlots}
+                  defaultValue={data?.timeSlots?.[0]?._id}
+                  value={data?.timeSlots?.[0]?._id}
+                />
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white mx-10 rounded-lg animate-in mt-8 ">
+      <div className="bg-white mx-10 rounded-lg mt-8 ">
         <div className="bg-[#FBFBFE] md:h-[60px] h-auto rounded-t-lg flex md:flex-nowrap flex-wrap  justify-between px-5 ">
           <p className="pt-[15px] pl-[15px] text-2xl">Attendance list</p>
           <div>

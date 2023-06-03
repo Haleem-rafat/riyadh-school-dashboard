@@ -34,7 +34,7 @@ const UsersTable = () => {
   console.log("====================================");
 
   return (
-    <div className="p-5">
+    <div className="p-5 ">
       <Dimmer active={isLoading} inverted>
         <Loader active />
       </Dimmer>
@@ -74,16 +74,8 @@ const UsersTable = () => {
                   <p className="my-auto">{`${e?.firstName} ${e?.lastName}`}</p>
                 </div>
               </Table.Cell>
-              <Table.Cell>
-                {e?.groups.map((e) => (
-                  <p>{e?.name}</p>
-                ))}
-              </Table.Cell>
-              <Table.Cell>
-                {e?.timeSlots.map((e) => (
-                  <p>{e?.name}</p>
-                ))}
-              </Table.Cell>
+              <Table.Cell>{e?.groups[0]?.name}</Table.Cell>
+              <Table.Cell>{e?.timeSlots[0]?.name}</Table.Cell>
               <Table.Cell
                 className={e?.status === "Active" ? "text-green" : "text-red"}
               >

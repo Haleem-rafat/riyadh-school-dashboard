@@ -28,6 +28,11 @@ const routes = {
       default: `/dashboard/notification`,
     },
   },
+
+  attendances: {
+    in: "/attendances/check-in",
+    out: "/attendances/check-out",
+  },
 };
 
 export default routes;

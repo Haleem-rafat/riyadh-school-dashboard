@@ -8,6 +8,8 @@ import { authAxios } from "../../../config/axios-config";
 import api from "../../../api";
 import routes from "../../../routes";
 import { toast } from "react-hot-toast";
+import AddMangerModel from "./add-manger-model";
+import AddAdminModel from "./add-admin-model";
 
 const AdminTable = () => {
   const history = useHistory();
@@ -76,18 +78,23 @@ const AdminTable = () => {
               <Table.Cell>
                 <div className="flex gap-x-5">
                   <Avatar
-                    name={`${e?.fullName}`}
+                    name={`${e?.fullName || e?.email}`}
                     className="w-10 h-10 text-base"
                   />
-                  <p className="my-auto">{`${e?.fullName}`}</p>
+                  <p className="my-auto">{`${e?.fullName || e?.email}`}</p>
                 </div>
               </Table.Cell>
               <Table.Cell>{e?.email}</Table.Cell>
               <Table.Cell>
                 <div className="flex gap-x-5">
-                  <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
+                  <AddAdminModel
+                    adminId={e?._id}
+                    oldName={e?.fullName}
+                    oldEmail={e?.email}
+                  />
+                  {/* <button className="text-[#35C1CB] border-[1px] border-[#35C1CB] rounded-full py-1 px-4">
                     Edit
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => handelDelete(e?._id)}
                     className="text-red border-[1px] border-red rounded-full py-1 px-4"

@@ -62,8 +62,8 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
           <div>
             <Formik
               initialValues={{
-                groupId: oldGroup?.map((e) => e?._id) || "",
-                timeSlotId: oldTimeSlots?.map((e) => e?._id) || "",
+                groupId: "",
+                timeSlotId: "",
               }}
               // validationSchema={logInSchema}
               onSubmit={handleEditUser}
@@ -78,7 +78,7 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
                         label="Groups"
                         options={AllGroupOptions}
                         loading={loadingGroupOptions}
-                        multiple
+                        // multiple
                       />
                     </div>
                     <div className="mt-10 mx-auto ">
@@ -87,7 +87,7 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
                         label="Time Slots"
                         options={AllTimeSlots}
                         loading={loadingTimeSlotsOptions}
-                        multiple
+                        // multiple
                       />
                     </div>
                     <div className="md:flex block justify-center py-8 ">

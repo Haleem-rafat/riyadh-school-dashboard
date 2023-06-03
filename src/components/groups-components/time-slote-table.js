@@ -43,12 +43,12 @@ const TimeSloteTable = () => {
             <Table.HeaderCell className="text-gray text-base font-normal">
               Slot Name
             </Table.HeaderCell>
-            <Table.HeaderCell className="text-gray text-base font-normal">
+            {/* <Table.HeaderCell className="text-gray text-base font-normal">
               Day
             </Table.HeaderCell>
             <Table.HeaderCell className="text-gray text-base font-normal">
               Time Slot
-            </Table.HeaderCell>
+            </Table.HeaderCell> */}
             <Table.HeaderCell className="text-gray text-base font-normal">
               details
             </Table.HeaderCell>
@@ -58,7 +58,7 @@ const TimeSloteTable = () => {
           {data?.map((e) => (
             <Table.Row>
               <Table.Cell>{e?.name}</Table.Cell>
-              <Table.Cell>
+              {/* <Table.Cell>
                 {e?.slots.map((time) => (
                   <p className="py-0.5">{time?.day}</p>
                 ))}
@@ -70,7 +70,7 @@ const TimeSloteTable = () => {
                     {moment(time?.to).format("hh:mm:A")}
                   </p>
                 ))}
-              </Table.Cell>
+              </Table.Cell> */}
               <Table.Cell>
                 <TimeSloteModel
                   oldName={e?.name}
