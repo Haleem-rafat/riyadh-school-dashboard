@@ -20,6 +20,7 @@ const api = {
       default: `/employees`,
       getById: (employeesId) => `/employees/${employeesId}/details`,
       edit: (employeesId) => `/employees/${employeesId}/add-group`,
+      list: "/employees/drop-list",
     },
     attendance: {
       default: `/attendance/checkin`,
