@@ -21,6 +21,7 @@ const api = {
       getById: (employeesId) => `/employees/${employeesId}/details`,
       edit: (employeesId) => `/employees/${employeesId}/add-group`,
       list: "/employees/drop-list",
+      GenerateQrCode: (employeesId) => `/employees/${employeesId}/qrcode`,
     },
     attendance: {
       default: `/attendance/checkin`,
