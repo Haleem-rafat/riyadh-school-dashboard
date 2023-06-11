@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Modal } from "semantic-ui-react";
+import { Button, Dimmer, Form, Loader, Modal } from "semantic-ui-react";
 import { ReactComponent as AddCircleIcon } from "../../../src/assets/icons/add-circle-icon.svg";
 import { ReactComponent as CloseIcon } from "../../../src/assets/icons/close-icon.svg";
 import { Formik } from "formik";
@@ -28,12 +28,13 @@ function AddTimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
       .filter((key) => key.includes("from"))
       .map((key) => {
         const day = key.substring(4);
-        const from = moment(values[key], "LT").format(
+        const from = moment(values[key], "LT").toLocaleString(
           "YYYY-MM-DDTHH:mm:ss.SSS"
         );
-        const to = moment(values[key.replace("from", "to")], "LT").format(
-          "YYYY-MM-DDTHH:mm:ss.SSS"
-        );
+        const to = moment(
+          values[key.replace("from", "to")],
+          "LT"
+        ).toLocaleString("YYYY-MM-DDTHH:mm:ss.SSS");
         return { day, from, to };
       })
       .filter((slot) => slot.from && slot.to);
@@ -80,6 +81,9 @@ function AddTimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
         </Button>
       }
     >
+      <Dimmer active={isLoading} inverted>
+        <Loader active />
+      </Dimmer>
       <Modal.Content className="md:w-[900px] w-full h-auto bg-background-sub rounded-lg ">
         <div className="bg-white md:w-[830px] w-full h-auto rounded-lg mx-auto my-0 overflow-y-scroll scrollbar-hide ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">
@@ -130,7 +134,7 @@ function AddTimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                     </div>
                     <div className="mt-4 mx-auto flex flex-col gap-y-5  ">
                       {timeSloteOptions.map((timeSlote) => (
-                        <div className="flex justify-between ">
+                        <div className="flex justify-between flex-wrap ">
                           <div className="my-auto">
                             <FormikInput
                               name="day"
@@ -138,7 +142,7 @@ function AddTimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                               placeholder={timeSlote?.day}
                             />
                           </div>
-                          <div className="flex gap-x-5">
+                          <div className="flex flex-wrap gap-x-5">
                             <div className="flex gap-x-10 ">
                               <p className="my-auto">From :</p>
                               <FormikTimePicker

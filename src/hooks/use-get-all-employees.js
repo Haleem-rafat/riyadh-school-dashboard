@@ -10,15 +10,12 @@ const useGetAllEmployees = () => {
 
   useEffect(() => {
     run(authAxios.get(`employees?page=1&perPage=500`)).then(({ data }) => {
-      console.log("====================================");
-      console.log(data);
-      console.log("====================================");
       const AllEmployees = data?.data;
       const options = [];
 
       AllEmployees.forEach((d) =>
         options.push({
-          text: `${d?.firstName} ${d?.lastName}`,
+          text: `${d?.oracleDBNumber} - ${d?.firstName} ${d?.lastName}`,
           key: d?._id,
           value: d._id,
         })

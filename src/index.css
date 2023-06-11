@@ -95,3 +95,11 @@
 .ui.form .field .ui.input input, .ui.form .fields .field .ui.input input{
 @apply rounded-xl py-[12px] 
 }
+
+
+.react-calendar__tile--active, .react-calendar__tile--hasActive{
+  @apply bg-primary rounded-xl text-white !important
+}
+.react-calendar button:enabled:hover, .react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus, .react-calendar__tile--now{
+@apply rounded-xl 
+}

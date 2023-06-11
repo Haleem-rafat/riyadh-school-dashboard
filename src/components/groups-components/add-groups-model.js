@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Form, Header, Image, Modal } from "semantic-ui-react";
+import {
+  Button,
+  Dimmer,
+  Form,
+  Header,
+  Image,
+  Loader,
+  Modal,
+} from "semantic-ui-react";
 import { ReactComponent as AddCircleIcon } from "../../../src/assets/icons/add-circle-icon.svg";
 import { ReactComponent as CloseIcon } from "../../../src/assets/icons/close-icon.svg";
 import { Formik } from "formik";
@@ -65,6 +73,9 @@ function AddGroupsModel({ isAdd, oldName, groupId }) {
         )
       }
     >
+      <Dimmer active={isLoading} inverted>
+        <Loader active />
+      </Dimmer>
       <Modal.Content className="md:w-[600px] w-full h-auto bg-background-sub rounded-lg">
         <div className="bg-white md:w-[550px] w-full h-auto rounded-lg mx-auto my-0 ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">

@@ -22,17 +22,9 @@ const useGetAllTimeSlots = () => {
         })
       );
 
-      console.log("====================================");
-      console.log({ options });
-      console.log("====================================");
-
       setAllTimeSlotsOptions(options);
     });
   }, [run]);
-
-  console.log("====================================");
-  console.log({ AllTimeSlots });
-  console.log("====================================");
 
   return {
     AllTimeSlots,

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Modal } from "semantic-ui-react";
+import { Button, Dimmer, Form, Loader, Modal } from "semantic-ui-react";
 import { ReactComponent as AddCircleIcon } from "../../../src/assets/icons/add-circle-icon.svg";
 import { ReactComponent as CloseIcon } from "../../../src/assets/icons/close-icon.svg";
 import { Formik } from "formik";
@@ -98,6 +98,9 @@ function TimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
         )
       }
     >
+      <Dimmer active={isLoading} inverted>
+        <Loader active />
+      </Dimmer>
       <Modal.Content className="md:w-[900px] w-full h-auto bg-background-sub rounded-lg ">
         <div className="bg-white md:w-[830px] w-full h-auto rounded-lg mx-auto my-0 overflow-y-scroll scrollbar-hide ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">
@@ -122,7 +125,9 @@ function TimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                         (element) => element?.day === "Monday" || "Mondays"
                       )
                       ?.from?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 toMonday:
                   moment(
                     oldSlots
@@ -130,85 +135,111 @@ function TimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                         (element) => element?.day === "Monday" || "Mondays"
                       )
                       ?.to?.replace("Z", "")
-                  ).format("hh:mm:A") || " ",
+                  )
+                    .local()
+                    .format("hh:mm:A") || " ",
                 //
                 fromTuesday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Tuesday")
                       ?.from?.replace("Z", "")
-                  ).format("hh:mm:A") || " ",
+                  )
+                    .local()
+                    .format("hh:mm:A") || " ",
                 toTuesday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Tuesday")
                       ?.to?.replace("Z", "")
-                  ).format("hh:mm:A") || " ",
+                  )
+                    .local()
+                    .format("hh:mm:A") || " ",
                 //
                 fromWednesday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Wednesday")
                       ?.from?.replace("Z", " ")
-                  ).format("hh:mm:A") || " ",
+                  )
+                    .local()
+                    .format("hh:mm:A") || " ",
                 toWednesday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Wednesday")
                       ?.to?.replace("Z", " ")
-                  ).format("hh:mm:A") || " ",
+                  )
+                    .local()
+                    .format("hh:mm:A") || " ",
                 //
                 fromThursday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Thursday")
                       ?.from?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 toThursday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Thursday")
                       ?.to?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 //
                 fromFriday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Friday")
                       ?.from?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 toFriday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Friday")
                       ?.to?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 //
                 fromSaturday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Saturday")
                       ?.from?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 toSaturday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Saturday")
                       ?.to?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 //
                 fromSunday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Sunday")
                       ?.from?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
                 toSunday:
                   moment(
                     oldSlots
                       ?.find((element) => element?.day === "Sunday")
                       ?.to?.replace("Z", "")
-                  ).format("hh:mm:A") || "",
+                  )
+                    .local()
+                    .format("hh:mm:A") || "",
               }}
               onSubmit={handleAddTmeSlote}
               validationSchema={handleAddTmeSloteSchema}
@@ -223,9 +254,9 @@ function TimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                         <FormikInput placeholder="Time Slot Name" name="name" />
                       </p>
                     </div>
-                    <div className="mt-4 mx-auto flex flex-col gap-y-5  ">
+                    <div className="mt-4 mx-auto flex flex-col  gap-y-5  ">
                       {timeSloteOptions.map((timeSlote) => (
-                        <div className="flex justify-between ">
+                        <div className="flex justify-between flex-wrap ">
                           <div className="my-auto">
                             <FormikInput
                               name="day"
@@ -233,7 +264,7 @@ function TimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                               placeholder={timeSlote?.day}
                             />
                           </div>
-                          <div className="flex gap-x-5">
+                          <div className="flex  flex-wrap gap-x-5">
                             <div className="flex gap-x-10 ">
                               <p className="my-auto">From :</p>
                               <FormikTimePicker
@@ -241,7 +272,7 @@ function TimeSloteModel({ isAdd, oldName, oldSlots, timeSlotsId }) {
                                 placeholder="00:00:AM"
                               />
                             </div>
-                            <div className="flex gap-x-10">
+                            <div className="flex flex-wrap gap-x-10">
                               <p className="my-auto">To :</p>
                               <FormikTimePicker
                                 name={`${timeSlote?.to?.name}`}

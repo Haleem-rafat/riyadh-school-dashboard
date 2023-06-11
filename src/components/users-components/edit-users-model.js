@@ -34,10 +34,6 @@ function EditUseModel({ oldGroup, oldTimeSlots, userId }) {
       });
   };
 
-  console.log("====================================");
-  console.log(oldTimeSlots);
-  console.log("====================================");
-
   return (
     <Modal
       className="md:w-[600px] w-full h-auto rounded-lg bg-background-sub scale-in"

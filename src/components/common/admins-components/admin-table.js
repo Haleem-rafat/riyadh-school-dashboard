@@ -19,24 +19,18 @@ const AdminTable = () => {
 
   const { run, isLoading, isError, error } = useAxios([]);
   useEffect(() => {
-    if (search) {
+    if (search.includes("page") && search.includes("perPage")) {
       run(
         authAxios
           .get(`${api.app.adminsManagers.getAdmins}${search}`)
           .then((res) => {
             SetPagination(res?.data?.pagination);
             setData(res?.data?.data);
-            console.log("====================================");
-            console.log(res);
-            console.log("====================================");
           })
       );
     }
   }, [data?.data?.length, run, search]);
 
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
   const { run: runDelete, isLoading: isLoadingDelete } = useAxios([]);
 
   const handelDelete = (id) => {

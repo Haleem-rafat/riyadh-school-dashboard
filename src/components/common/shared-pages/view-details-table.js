@@ -19,24 +19,18 @@ const ViewDetailsTable = ({ timeSlots }) => {
 
   const { run, isLoading, isError, error } = useAxios([]);
   useEffect(() => {
-    if (search) {
+    if (search.includes("page") && search.includes("perPage")) {
       run(
         authAxios
           .get(`${api.app.attendances.getById(id)}${search}`)
           .then((res) => {
             SetPagination(res?.data?.pagination);
             setData(res?.data?.data);
-            console.log("====================================");
-            console.log(res);
-            console.log("====================================");
           })
       );
     }
   }, [id, run, search]);
 
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
   return (
     <div className="p-5">
       <Table basic="very">

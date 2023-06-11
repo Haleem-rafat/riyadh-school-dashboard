@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
+import "semantic-ui-css/semantic.min.css";
 import "./index.css";
 import { AuthProvider } from "./context/auth-context";
 

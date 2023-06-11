@@ -26,17 +26,11 @@ const ViewDetails = () => {
         authAxios.get(`${api.app.employees.getById(id)}`).then((res) => {
           SetPagination(res?.data?.pagination);
           setData(res?.data?.data);
-          console.log("====================================");
-          console.log(res);
-          console.log("====================================");
         })
       );
     }
   }, [id, run, search]);
 
-  console.log("====================================");
-  console.log({ data });
-  console.log("====================================");
   return (
     <div className="bg-background h-screen pt-8 z-0 ">
       <Dimmer

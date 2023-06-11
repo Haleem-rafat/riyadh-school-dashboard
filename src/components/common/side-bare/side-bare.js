@@ -18,10 +18,6 @@ const SideBare = ({ SetSid, sid }) => {
   const { logout } = useAuthState();
   const [roleSys] = useLocalStorage("roleSys");
 
-  console.log("====================================");
-  console.log(roleSys === "MANAGER");
-  console.log("====================================");
-
   const sidebarVariants = {
     open: {
       x: 0,

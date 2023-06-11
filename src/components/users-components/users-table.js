@@ -19,7 +19,7 @@ const UsersTable = () => {
 
   const { run, isLoading, isError, error } = useAxios([]);
   useEffect(() => {
-    if (search) {
+    if (search.includes("page") && search.includes("perPage")) {
       run(
         authAxios.get(`${api.app.employees.default}${search}`).then((res) => {
           SetPagination(res?.data?.pagination);
@@ -28,10 +28,6 @@ const UsersTable = () => {
       );
     }
   }, [data?.data?.length, run, search]);
-
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
 
   return (
     <div className="p-5 ">

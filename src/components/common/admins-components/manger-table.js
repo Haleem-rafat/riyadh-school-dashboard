@@ -20,7 +20,7 @@ const MangerTable = () => {
 
   const { run, isLoading, isError, error } = useAxios([]);
   useEffect(() => {
-    if (search) {
+    if (search.includes("page") && search.includes("perPage")) {
       run(
         authAxios
           .get(`${api.app.adminsManagers.getManagers}${search}`)
@@ -44,9 +44,6 @@ const MangerTable = () => {
       });
   };
 
-  console.log("====================================");
-  console.log({ data });
-  console.log("====================================");
   return (
     <div className="p-5 animate-in">
       <Dimmer active={isLoading || isLoadingD} inverted>

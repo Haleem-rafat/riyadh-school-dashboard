@@ -11,7 +11,7 @@ import { authAxios } from "../../config/axios-config";
 import api from "../../api";
 import moment from "moment";
 
-const ReportesTable = () => {
+const ReportesTable = ({ setHiddenFilter }) => {
   const history = useHistory();
   const [data, setData] = useState();
   const [pagination, SetPagination] = useState(0);
@@ -19,22 +19,16 @@ const ReportesTable = () => {
 
   const { run, isLoading, isError, error } = useAxios([]);
   useEffect(() => {
-    if (search) {
+    if (search.includes("page") && search.includes("perPage")) {
       run(
         authAxios.get(`${api.app.attendances.get}${search}`).then((res) => {
           SetPagination(res?.data?.pagination);
           setData(res?.data?.data);
-          console.log("====================================");
-          console.log(res);
-          console.log("====================================");
         })
       );
     }
   }, [data?.data?.length, run, search]);
 
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
   return (
     <div className="p-5 z-0">
       <Dimmer active={isLoading} inverted>
