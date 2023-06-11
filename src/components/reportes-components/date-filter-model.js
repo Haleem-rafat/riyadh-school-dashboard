@@ -38,7 +38,7 @@ function DateFilterModel({ setDateHiddenFilter }) {
       <Modal.Content className="md:w-[400px] w-full h-auto bg-background-sub rounded-lg">
         <div className="bg-white md:w-[350px] w-full h-auto rounded-lg mx-auto my-0 ">
           <div className="flex justify-between mx-6 py-4 border-b-[1px]">
-            <p className="text-xl pt-3 ">Select Date v</p>
+            <p className="text-xl pt-3 ">Select Date </p>
             <CloseIcon
               className="w-8 cursor-pointer"
               onClick={() => setOpen(false)}

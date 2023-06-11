@@ -2,9 +2,13 @@ import React from "react";
 import { Button, Modal } from "semantic-ui-react";
 import { ReactComponent as QrcodeIcon } from "../../../../src/assets/icons/Icon-metro-qrcode.svg";
 import { ReactComponent as CloseIcon } from "../../../../src/assets/icons/close-icon.svg";
+import QRCode from "react-qr-code";
 
 function QrCodeModel() {
   const [open, setOpen] = React.useState(false);
+  const [value, setValueQR] = React.useState(
+    "blaaasbcjshdcsjhbcdjshbdcsjhbdbckjdhscb"
+  );
 
   return (
     <Modal
@@ -28,9 +32,15 @@ function QrCodeModel() {
             />
           </div>
           <div>
-            <div>
-              <QrcodeIcon className="mx-auto my-8" />
+            <div className="w-[230px] mx-auto py-8">
+              <QRCode
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={value}
+                viewBox={`0 0 256 256`}
+              />
             </div>
+            {/* <QrcodeIcon className="mx-auto my-8" /> */}
             <div className="flex justify-center gap-x-5 py-5 mx-5">
               <Button className="bg-green text-white md:w-[180px] w-full rounded-full font-serifEN font-normal text-lg mt-2 ">
                 Activation
