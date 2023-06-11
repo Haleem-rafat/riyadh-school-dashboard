@@ -37,7 +37,7 @@ const Reports = () => {
                     setDateHiddenFilter(false);
                   }}
                 >
-                  {moment(date).format("DD/mm/yyyy")}
+                  {moment(date).format("DD/MM/YYYY")}
                   <AiFillCloseCircle className="my-auto" size={15} />
                 </button>
               </div>

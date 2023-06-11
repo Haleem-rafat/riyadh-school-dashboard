@@ -60,43 +60,75 @@ const ReportesTable = ({ setHiddenFilter }) => {
         <Table.Body>
           {data?.map((e) => (
             <Table.Row>
-              <Table.Cell>{e?.employee?.oracleDBNumber}</Table.Cell>
+              <Table.Cell>{e?.oracleDBNumber}</Table.Cell>
               <Table.Cell>
                 <div className="flex gap-x-5">
                   <Avatar
-                    name={`${e?.employee?.firstName} ${e?.employee?.lastName}`}
+                    name={`${e?.firstName} ${e?.lastName}`}
                     className="w-10 h-10 text-base"
                   />
-                  <p className="my-auto">{`${e?.employee?.firstName} ${e?.employee?.lastName}`}</p>
+                  <p className="my-auto">{`${e?.firstName} ${e?.lastName}`}</p>
                 </div>
               </Table.Cell>
               <Table.Cell>
-                {" "}
-                {moment(e?.createdAt).format("DD/MM/YYYY")}
+                {e?.attendance?.createdAt
+                  ? moment(e?.attendance?.createdAt, "LT")
+                      .local()
+                      .format("DD/MM/YYYY")
+                  : "---"}
               </Table.Cell>
               <Table.Cell>
-                <div className="flex gap-x-1">
-                  <p className="text-green ">
-                    {" "}
-                    {e?.checkIn ? moment(e?.checkIn).format("LT") : "---"}
-                  </p>
-                  <CheckIcon className=" mt-1 " />
-                </div>
+                {e?.attendance?.isCheckedInLate ? (
+                  <div className="flex gap-x-1">
+                    <p className="text-green ">
+                      {e?.attendance?.checkIn
+                        ? moment(e?.attendance?.checkIn).format("LT")
+                        : "---"}
+                    </p>
+                    <CheckIcon className=" mt-1 " />
+                  </div>
+                ) : (
+                  <Table.Cell>
+                    <div className="flex gap-x-1">
+                      <p className="text-red">
+                        {e?.attendance?.checkIn
+                          ? moment(e?.attendance?.checkIn).format("LT")
+                          : "---"}
+                      </p>
+                      <ArrowIcon className="rotate-180 mt-1 " />
+                    </div>
+                  </Table.Cell>
+                )}
               </Table.Cell>
               <Table.Cell>
-                <div className="flex gap-x-1">
-                  <p className="text-red">
-                    {e?.checkOut ? moment(e?.checkOut).format("LT") : "---"}
-                  </p>
-                  <ArrowIcon className="rotate-180 mt-1 " />
-                </div>
+                {e?.attendance?.isCheckedOutEarly ? (
+                  <div className="flex gap-x-1">
+                    <p className="text-green ">
+                      {" "}
+                      {e?.attendance?.checkOut
+                        ? moment(e?.attendance?.checkOut).format("LT")
+                        : "---"}
+                    </p>
+                    <CheckIcon className=" mt-1 " />
+                  </div>
+                ) : (
+                  <Table.Cell>
+                    <div className="flex gap-x-1">
+                      <p className="text-red">
+                        {e?.attendance?.checkOut
+                          ? moment(e?.attendance?.checkOut).format("LT")
+                          : "---"}
+                      </p>
+                      <ArrowIcon className="rotate-180 mt-1 " />
+                    </div>
+                  </Table.Cell>
+                )}
               </Table.Cell>
+
               <Table.Cell>
                 <button
                   onClick={() =>
-                    history.push(
-                      routes.app.reportes.reportesView(e?.employee?._id)
-                    )
+                    history.push(routes.app.reportes.reportesView(e?._id))
                   }
                   className="text-green border-[1px] border-green rounded-full py-1 px-4"
                 >

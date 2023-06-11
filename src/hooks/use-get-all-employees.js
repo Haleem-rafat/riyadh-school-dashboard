@@ -9,7 +9,7 @@ const useGetAllEmployees = () => {
   const { run, isLoading, error, isError } = useAxios();
 
   useEffect(() => {
-    run(authAxios.get(`employees?page=1&perPage=500`)).then(({ data }) => {
+    run(authAxios.get(`/employees/drop-list`)).then(({ data }) => {
       const AllEmployees = data?.data;
       const options = [];
 

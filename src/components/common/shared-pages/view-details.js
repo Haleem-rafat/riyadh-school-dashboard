@@ -31,6 +31,24 @@ const ViewDetails = () => {
     }
   }, [id, run, search]);
 
+  const groupOptions = [];
+  data?.groups?.forEach((d) =>
+    groupOptions.push({
+      text: d?.name,
+      key: d?._id,
+      value: d._id,
+    })
+  );
+
+  const timeSlotsOptions = [];
+  data?.timeSlots?.forEach((d) =>
+    timeSlotsOptions.push({
+      text: d?.name,
+      key: d?._id,
+      value: d._id,
+    })
+  );
+
   return (
     <div className="bg-background h-screen pt-8 z-0 ">
       <Dimmer
@@ -65,7 +83,7 @@ const ViewDetails = () => {
               <p className="my-auto text-gray">
                 <Dropdown
                   className="z-50"
-                  options={AllGroupOptions}
+                  options={groupOptions}
                   defaultValue={data?.groups?.[0]?._id}
                   value={data?.groups?.[0]?._id}
                 />
@@ -78,7 +96,7 @@ const ViewDetails = () => {
               <p className="my-auto text-xl font-medium">Time Slot</p>
               <p className="my-auto text-gray">
                 <Dropdown
-                  options={AllTimeSlots}
+                  options={timeSlotsOptions}
                   defaultValue={data?.timeSlots?.[0]?._id}
                   value={data?.timeSlots?.[0]?._id}
                 />
