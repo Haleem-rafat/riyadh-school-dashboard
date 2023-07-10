@@ -1,14 +1,42 @@
+import { Formik } from "formik";
 import { useState } from "react";
-import { Button, Form, Header, Image, Modal } from "semantic-ui-react";
+import { Button, Form, Modal } from "semantic-ui-react";
 import { ReactComponent as AddCircleIcon } from "../../../src/assets/icons/add-circle-icon.svg";
 import { ReactComponent as CloseIcon } from "../../../src/assets/icons/close-icon.svg";
-import { Formik } from "formik";
-import FormikInput from "../common/formik/formik-input";
+import useGetAllGroups from "../../hooks/use-get-all-groups";
 import FormikMultiDropdown from "../common/formik/formik-dropdown";
 import FormikTextArea from "../common/formik/formik-text-area";
+import useAxios from "../../hooks/use-axios";
+import api from "../../api";
+import { toast } from "react-hot-toast";
+import * as Yup from "yup";
+import { authAxios } from "../../config/axios-config";
 
 function CreatenewNotificationModel() {
   const [open, setOpen] = useState(false);
+  const [groupId, setGroupId] = useState();
+  const { AllGroupOptions, loadingGroupOptions } = useGetAllGroups();
+  const { run, isLoading, error } = useAxios();
+
+  const SendNotifigationSchema = Yup.object({
+    group: Yup.string().required("Required field"),
+    text: Yup.string().required("Required field"),
+  });
+
+  const SendNotifigations = (values) => {
+    const body = {
+      body: values.text,
+    };
+
+    run(authAxios.post(api.app.notification.default(groupId), body))
+      .then((res) => {
+        setOpen(false);
+        toast.success("The Notification has been send successfully");
+      })
+      .catch((err) => {
+        toast.error(error?.massage || "something is wrong please try again");
+      });
+  };
 
   return (
     <Modal
@@ -38,22 +66,31 @@ function CreatenewNotificationModel() {
             <Formik
               initialValues={{
                 group: "",
-                Text: "",
+                text: "",
               }}
-              // onSubmit={logIn}
-              // validationSchema={logInSchema}
+              onSubmit={SendNotifigations}
+              validationSchema={SendNotifigationSchema}
             >
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="w-full px-8 ">
                     <div className="mt-10 mx-auto ">
-                      <FormikMultiDropdown name="group" placeholder="group" />
+                      <FormikMultiDropdown
+                        name="group"
+                        label="Select Group"
+                        options={AllGroupOptions}
+                        loading={loadingGroupOptions}
+                        onChange={(e) => setGroupId(e)}
+                      />
                     </div>
                     <div className="mt-10 mx-auto ">
-                      <FormikTextArea name="Text" placeholder="Text" />
+                      <FormikTextArea name="text" placeholder="Text" />
                     </div>
                     <div className="md:flex block justify-center py-8 ">
-                      <Button className="bg-green text-white w-[140px] rounded-full font-serifEN font-normal text-base">
+                      <Button
+                        loading={isLoading}
+                        className="bg-green text-white w-[140px] rounded-full font-serifEN font-normal text-base"
+                      >
                         Send
                       </Button>
                     </div>

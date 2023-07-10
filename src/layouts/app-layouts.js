@@ -12,6 +12,7 @@ import Notification from "../page/app/notification/notification";
 import { BiMenuAltLeft } from "react-icons/bi";
 import CheckIn from "../page/mobile/check-in";
 import CheckOut from "../page/mobile/check-out";
+import Sync from "../page/app/sync/sync";
 
 const AppLayouts = () => {
   const [sid, SetSid] = useState(false);
@@ -41,6 +42,7 @@ const AppLayouts = () => {
           <Route path={routes.app.reportes.default} component={Reports} />
           <Route path={routes.app.users.usersView()} component={ViewDetails} />
           <Route path={routes.app.users.default} component={Users} />
+          <Route path={routes.app.sync.default} component={Sync} />
           <Route path={routes.app.groups.default} component={GroupsTabs} />
           <Route path={routes.app.admins.default} component={AdminsTabs} />
           <Route

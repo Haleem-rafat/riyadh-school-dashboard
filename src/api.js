@@ -38,6 +38,12 @@ const api = {
       edit: (adminsId) => `/admins/${adminsId}`,
       deleteAdmins: (adminsId) => `/admins/${adminsId}`,
     },
+    syncOracle: {
+      default: `/employees/oracle`,
+    },
+    notification: {
+      default: (groupId) => `/notifications/send/group/${groupId}`,
+    },
   },
   attendances: {
     in: (employeeId) => `/attendances/check-in/${employeeId}`,
