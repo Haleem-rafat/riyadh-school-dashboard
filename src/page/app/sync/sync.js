@@ -45,7 +45,7 @@ const Sync = () => {
         <p className="px-[15px] pb-[15px] text-2xl">
           Please select date from and date to , to sync data with Oracle{" "}
         </p>
-        <div className="flex justify-center gap-x-56 mt-5 ">
+        <div className="flex justify-center flex-wrap gap-x-56 gap-y-10 mt-5 ">
           <div className="shadow-2xl p-2 rounded-xl">
             <h1 className="text-xl font-semibold text-center">Date from:</h1>
             <Calendar
@@ -68,7 +68,7 @@ const Sync = () => {
             // disabled={valueFrom && valueTo ? true : false}
             loading={isLoading}
             onClick={valueFrom && valueTo ? () => Sync() : null}
-            className="bg-green text-white md:w-[350px] w-full rounded-full font-serifEN font-normal text-2xl mx-auto py-6 "
+            className="bg-green text-white md:w-[300px] w-full rounded-full font-serifEN font-normal text-2xl md:mx-auto mx-8 py-4  "
           >
             Sync Employees Oracle
           </Button>
